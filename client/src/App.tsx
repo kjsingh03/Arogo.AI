@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./components";
-import { Home } from "./pages";
+import { Home, MentalHealthDashboard, PhysicalHealthDashboard } from "./pages";
 
 export default function App() {
 
@@ -10,6 +10,8 @@ export default function App() {
       <div className="pt-18 2xl:pt-23.5">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/physical" element={<PhysicalHealthDashboard />} />
+          <Route path="/mental" element={<MentalHealthDashboard />} />
           <Route path="/messages" element={<Home />} />
           <Route path="/appointments" element={<Home />} />
         </Routes>

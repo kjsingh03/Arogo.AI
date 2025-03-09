@@ -24,6 +24,7 @@ import doctor6 from './home/doctor6.svg';
 import doctor7 from './home/doctor7.svg';
 import eyedoc from './home/eyedoc.svg';
 import facebook from './home/facebook.svg';
+import file from './home/file.svg';
 import flask from './home/flask.svg';
 import gynaec from './home/gynaec.svg';
 import heart from './home/heart.svg';
@@ -86,6 +87,7 @@ export {
     doctorBg,
     doctorFg,
     eyedoc,
+    file,
     facebook,
     flask,
     gynaec,

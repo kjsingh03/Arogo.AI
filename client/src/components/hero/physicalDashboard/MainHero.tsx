@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, icon1, icon2, icon3, icon4, icon5, icon6, iconBg, locationPin } from '../../../assets'
 
 const iconsList = [{ img: icon1, desc: "Consult Online" }, { img: icon2, desc: "Medicine alert" }, { img: icon3, desc: "View medical records" }, { img: icon4, desc: "Book test" }, { img: icon5, desc: "Aroga card coming" }, { img: icon6, desc: "Mental health" }];
@@ -11,7 +12,9 @@ export default function PhysicalDashboardMainHero() {
         <div className="w-full xl:max-w-[859px] 2xl:h-[407px] mt-[73px] ml-[0px] 3xl:ml-[55px] flex flex-col gap-7 ">
           <div style={{ background: 'rgba(255, 255, 255, 0.00)', boxShadow: '0px 0px 25.2px 0px rgba(30,162,233,0.14)' }} className="w-[377px] h-[47px] flex items-center gap-5.25 border border-[#FFFFFF01] rounded-[83.6px] p-[6px_18px] ">
             <p className='text-accent text-lg '>General Health</p>
-            <p className='hover:text-accent text-sm cursor-pointer '>Navigate to mental Health</p>
+            <Link to="/mental">
+              <p className='hover:text-accent text-sm cursor-pointer '>Navigate to mental Health</p>
+            </Link>
           </div>
 
           <div className="h-[223px] flex flex-col justify-between ">
@@ -24,14 +27,14 @@ export default function PhysicalDashboardMainHero() {
             <div className="w-[1px] h-[60%] bg-[#d9d9d9] "></div>
             <div className="flex items-center gap-3.5 w-max ">
               <div className="w-4.5 h-7 ">
-                <img src={locationPin} className='w-full h-full object-contain' alt="" />
+                <img src={locationPin} className='size-full object-contain' alt="" />
               </div>
               <input type="text" className='w-[100%] 2xl:w-[218px] h-[23px] bg-transparent 2xl:text-xl leading-[23px] tracking-[0.4px] font-light outline-none border-none' placeholder='Block a sector A2, No' />
             </div>
             <div className="w-10 h-10 2xl:w-16.25 2xl:h-16.25 hover:text-accent text-white btn btn-primary p-2 2xl:px-4 2xl:py-4.25 rounded-full">
-              <svg className='w-full h-full object-cover' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 24C19.5228 24 24 19.5228 24 14C24 8.47715 19.5228 4 14 4C8.47715 4 4 8.47715 4 14C4 19.5228 8.47715 24 14 24Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M21.0703 21.0703L27.9991 27.9991" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <svg className='size-full object-cover' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 24C19.5228 24 24 19.5228 24 14C24 8.47715 19.5228 4 14 4C8.47715 4 4 8.47715 4 14C4 19.5228 8.47715 24 14 24Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21.0703 21.0703L27.9991 27.9991" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>
@@ -39,11 +42,11 @@ export default function PhysicalDashboardMainHero() {
 
         <div className="w-[413.6px] h-[549.1px] relative bg-red-60 flex justify-center ">
           <div className="w-[393.84px] h-full z-20">
-            <img src={doctorFg} className='w-full h-full object-cover' alt="Doctor" />
+            <img src={doctorFg} className='size-full object-cover' alt="Doctor" />
           </div>
 
           <div className="w-full h-[480.68px] absolute bottom-0 z-0 ">
-            <img src={doctorBg} className='w-full h-full object-cover ' alt="Doctor" />
+            <img src={doctorBg} className='size-full object-cover ' alt="Doctor" />
           </div>
 
           <div className="w-[140.2px] h-[50.9px] bg-white flex items-center justify-center absolute top-[132.45px] right-0 border-[#ECECEC] border-[3.51px] rounded-[10.5px] ">
@@ -59,7 +62,7 @@ export default function PhysicalDashboardMainHero() {
               <div className="w-[109.64px] flex items-center justify-between relative ">
                 {doctorsList?.map((doc, idx) => (
                   <div key={'doc' + idx} className="h-[23.68px] w-[23.68px] rounded-full overflow-hidden absolute" style={{ left: `${idx * 12.5}px`, zIndex: doctorsList.length + idx, }}>
-                    <img src={doc} alt="doctor img" className="w-full h-full object-cover" />
+                    <img src={doc} alt="doctor img" className="size-full object-cover" />
                   </div>
                 ))}
                 <div className="h-[23.68px] w-[23.68px] rounded-full overflow-hidden absolute bg-accent flex justify-center items-center" style={{ left: `${7 * 12.5}px`, zIndex: doctorsList.length + 7, }}>
@@ -78,7 +81,7 @@ export default function PhysicalDashboardMainHero() {
             <div key={'icon' + idx} className="w-[193.6px] h-[157.3px] flex flex-col justify-between relative ">
               <img src={iconBg} className='w-[34.84px] h-[34.84px] object-contain absolute -top-1 left-4.5 -z-10 ' alt={'icon' + idx} />
               <div className="h-16.5 w-16.5 ml-5.75 ">
-                <img src={icon.img} className='w-full h-full object-contain z-10' alt={'icon' + idx} />
+                <img src={icon.img} className='size-full object-contain z-10' alt={'icon' + idx} />
               </div>
               <p className='h-11.5 text-lg leading-[23px] tracking-[0.36px] font-light ml-4.5 '>{icon.desc}</p>
             </div>

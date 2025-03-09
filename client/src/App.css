@@ -19,6 +19,10 @@ body{
   display: none;
 }
 
+.thin-scrollbar {
+  scrollbar-width: thin;
+}
+
 .btn{
   cursor: pointer;
   font-weight:500;

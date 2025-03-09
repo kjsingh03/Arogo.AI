@@ -1,27 +1,3 @@
-export interface MedicationCardTimeSlot {
-    time: string;
-    status: string
-}
-
-export interface MedicationCardProps {
-    name: string;
-    times?: string;
-    timeSlot?: MedicationCardTimeSlot[];
-}
-
-export interface UpcomingAppointmentCardProps {
-    img: string;
-    name: string;
-    speciality: string;
-    clinic: string;
-    location: string;
-    times: string;
-    date: string;
-    mode: string;
-    queue: string;
-    id: string;
-}
-
 export interface DoctorCardProps {
     img: string;
     name: string;

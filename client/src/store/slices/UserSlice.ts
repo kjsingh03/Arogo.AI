@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserSliceInterface } from "../interfaces/interfaces";
-import { User } from "../../types/types";
+import { UserSliceInterface } from "../interfaces";
+import { User } from "../../types";
 
 const initialState: UserSliceInterface = {
     user: { email: '', firstName: '', lastName: '', token: '' },
@@ -9,7 +9,7 @@ const initialState: UserSliceInterface = {
     error: null
 };
 
-export const UserSlice = createSlice({
+const UserSlice = createSlice({
     name: "User",
     initialState,
     reducers: {

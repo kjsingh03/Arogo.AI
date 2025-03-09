@@ -1,9 +1,7 @@
 import { bellz, bin, pencil } from '../../assets';
-import { MedicationCardProps, MedicationCardTimeSlot } from '../../types/props';
+import { Medication } from '../../types';
 
-
-
-export default function MedicationCard({ name, times, timeSlot }: MedicationCardProps) {
+export default function MedicationCard({ name, times, timeSlot, handleClick }: Medication & { handleClick: () => void }) {
 
   const getColor = (status: string) => {
     return status === "Missed" ? '#2E2E2E' : status === "Taken" ? '#00CA4E' : '#FFA929' // Allowed status : Missed, Taken, or Upcoming
@@ -21,8 +19,8 @@ export default function MedicationCard({ name, times, timeSlot }: MedicationCard
 
       <div className="flex items-center gap-2.75">
         {
-          timeSlot?.map((slot: MedicationCardTimeSlot,idx) => (
-            <div key={name+idx} style={{ color: getColor(slot.status) }} className="flex flex-col items-center ">
+          timeSlot?.map((slot, idx) => (
+            <div key={name + idx} style={{ color: getColor(slot.status) }} className="flex flex-col items-center ">
               <div style={{ borderColor: getColor(slot.status) }} className={`border border- p-[16.293px_12.404px_14.582px_17.378px] rounded-[13px] text-[19.55px] font-medium leading-[17.16px] tracking-default `}>
                 <p>{slot.time}</p>
               </div>
@@ -34,9 +32,9 @@ export default function MedicationCard({ name, times, timeSlot }: MedicationCard
 
       <div className="w-full flex items-center justify-end gap-7.25">
         <div className="w-[48.87px] h-[48.87px] p-[7.6px_6.5px_6.5px_7.6px] rounded-full bg-[#FF9D15] cursor-pointer">
-          <img src={bellz} className='w-full h-full object-cover' alt="Notification reminder" />
+          <img src={bellz} className='size-full object-cover' alt="Notification reminder" />
         </div>
-        <button className='p-[16.292px_15.814px_14.582px_15.206px] text-[19.55px] btn btn-primary'>View more</button>
+        <button onClick={handleClick} className='p-[16.292px_15.814px_14.582px_15.206px] text-[19.55px] btn btn-primary'>View more</button>
       </div>
     </div>
   )

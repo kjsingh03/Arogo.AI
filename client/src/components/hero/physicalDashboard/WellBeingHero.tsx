@@ -32,7 +32,7 @@ export default function WellBeingHero() {
                 ))}
             </div>
             <div className="flex gap-5 w-full max-w-[1138px] max-lg:flex-col">
-                <div className="w-[65%] max-lg:w-full bg-neutral-50 rounded-2xl flex flex-col gap-11 py-7 xl:px-7">
+                <div className="w-[65%] max-lg:w-full bg-[#fafafa] rounded-2xl flex flex-col gap-11 py-7 xl:px-7">
                     <div className="flex gap-1.5 text-sm leading-loose">
                         <p className="text-[14.35px] font-semibold px-2 py-2 bg-lime-50 rounded">Geleitete Sitzung</p>
                         <p className="text-[14.35px] font-semibold px-4 py-2 whitespace-nowrap bg-lime-50 rounded">Gruppensitzung</p>
@@ -48,7 +48,7 @@ export default function WellBeingHero() {
                     </button>
                 </div>
                 <div className="w-93.5 h-111 max-lg:w-full max-lg:h-151 flex flex-col justify-end items-center relative overflow-hidden rounded-xl">
-                    <img src={vcDoctor} alt="doctor" className="w-full h-full object-cover absolute" />
+                    <img src={vcDoctor} alt="doctor" className="size-full object-cover absolute" />
                     <div className="flex items-center gap-2.75 py-5.75 px-7">
                         <img src={videoPlayer} alt="play icon" className="object-contain shrink-0 aspect-square w-[50px] relative z-10" />
                         <p className="relative z-10 text-white text-xl font-semibold tracking-normal leading-5">

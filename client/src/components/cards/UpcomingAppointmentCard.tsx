@@ -1,22 +1,22 @@
 import { locationMap, rightArrow } from '../../assets'
-import { UpcomingAppointmentCardProps } from '../../types/props'
+import { Appointment } from '../../types'
 
-export default function UpcomingAppointmentCard({ img, name, speciality, clinic, location, times, date, mode, queue }: UpcomingAppointmentCardProps) {
+export default function UpcomingAppointmentCard({ doctor, times, date, mode, queue, handleClick }: Appointment & { handleClick: () => void }) {
     return (
-        <div className='w-full xl:h-[183.55px] rounded-[15.2px] p-[12px_10.2px] 2xl:p-[12px_40.2px] flex flex-col xl:flex-row items-center justify-between text-center xl:text-start gap-11 xl:gap-0 bg-white '>
+        <div onClick={handleClick} className='w-full xl:h-[183.55px] rounded-[15.2px] p-[12px_10.2px] 2xl:p-[12px_40.2px] flex flex-col xl:flex-row items-center justify-between text-center xl:text-start gap-11 xl:gap-0 bg-white cursor-pointer'>
             <div className="w-[129.44px] h-[131px] overflow-hidden rounded-full ">
-                <img src={img} className='w-full h-full object-cover' alt="doctor" />
+                <img src={doctor.img} className='size-full object-cover' alt="doctor" />
             </div>
 
             <div className="xl:w-[20%] 2xl:w-[27%] h-full flex flex-col justify-between text-[19.55px] font-medium leading-[24.98px] tracking-default py-4">
                 <div className="flex flex-col ">
-                    <p className='text-[23.894px] tracking-[0.478px] line-clamp-1 '>{name}</p>
-                    <p className='line-clamp-1 '>{speciality}</p>
+                    <p className='text-[23.894px] tracking-[0.478px] line-clamp-1 '>{doctor.name}</p>
+                    <p className='line-clamp-1 '>{doctor.speciality}</p>
                 </div>
                 <div className=" ">
-                    <p>{clinic}</p>
+                    <p>{doctor.clinic}</p>
                     <div className="flex items-center gap-[13.29px] hover:border-b-accent bg-acc border-b-transparent cursor-pointer border-b  ">
-                        <p className='text-accent font-light cursor-pointer line-clamp-1 '>{location}</p>
+                        <p className='text-accent font-light cursor-pointer line-clamp-1 '>{doctor.location}</p>
                         <img src={locationMap} className="xl:w-[28.238px] h-[28.238px] " alt="" />
                     </div>
                 </div>
@@ -34,7 +34,7 @@ export default function UpcomingAppointmentCard({ img, name, speciality, clinic,
                 <p className='text-[80.37px] font-medium '>{queue}</p>
             </div>
 
-            <div className="flex items-center gap-[9.3px] text-accent">
+            <div className="flex items-center gap-[9.3px] text-accent border-b border-b-transparent hover:border-b-accent">
                 <p className='text-[19.55px] font-medium leading-[14.754px] tracking-default '>View more</p>
                 <img src={rightArrow} className='w-[34.75px] h-[34.75px] ' alt="" />
             </div>

@@ -1,23 +1,10 @@
-import { AppointmentsHero, ConsultAgainHero, HomeFAQ, PhysicalDashboardMainHero, SpecialityHero, StepsHero, WellBeingHero } from '../components';
 
 export default function Home() {
 
   return (
-    <div className='flex flex-col gap-9 '>
+    <div className='flex flex-col gap-9 min-h-[60vh] '>
 
-      <PhysicalDashboardMainHero/>
-
-      <AppointmentsHero/>
-
-      <ConsultAgainHero/>
-
-      <StepsHero />
-
-      <SpecialityHero/>
-
-      <WellBeingHero />
-
-      <HomeFAQ/>
+      Home
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UISliceInterface } from "../interfaces/interfaces";
+import { UISliceInterface } from "../interfaces";
 
 const initialState: UISliceInterface = {
     navOpen: false,
@@ -7,7 +7,7 @@ const initialState: UISliceInterface = {
     progress: 0
 };
 
-export const UISlice = createSlice({
+const UISlice = createSlice({
     name: "UI",
     initialState,
     reducers: {
@@ -25,3 +25,5 @@ export const UISlice = createSlice({
 });
 
 export const { setNavOpen, setLoading, setProgress, resetUI } = UISlice.actions;
+
+export default UISlice.reducer;

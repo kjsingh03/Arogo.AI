@@ -13,7 +13,7 @@ export default function SpecialityHero() {
             <div className="w-full min-h-[560px] flex max-xl:flex-col justify-between">
                 <div className="w-full max-w-[864px] max-xl:mx-auto relative flex flex-col items-center ">
                     <div className="w-39 h-38 overflow-hidden">
-                        <img src={bird} className="w-full h-full object-cover" alt="Bird" />
+                        <img src={bird} className="size-full object-cover" alt="Bird" />
                     </div>
                     <h4 className='text-[#606060] text-[52px] leading-[81px] font-bold h-24.5 '>Primary care</h4>
                     <p className='text-[22.42px] leading-[39.24px] tracking-[-0.56px] text-center px-28'>Need to make a primary care doctor appointment this week? Use Zocdoc to find doctors near you who take your insurance. It’s simple, secure and free.</p>
@@ -38,8 +38,8 @@ export default function SpecialityHero() {
                     <div className="w-full h-[98px] rounded-[57.5px] border border-[#d9d9d9] flex items-center justify-end p-[1.4px] ">
                         <input type="text" placeholder='Consult a doctor now' className='text-[28px] leading-[32px] tracking-[0.561px] outline-none border-none mx-auto ' />
                         <svg className='btn btn-primary rounded-full' xmlns="http://www.w3.org/2000/svg" width="89" height="90" viewBox="0 0 89 90" fill="none">
-                            <path d="M47.5977 56.0703L58.6361 45.0319L47.5977 33.9934" stroke="currentColor" stroke-width="4.13942" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M31.0391 45.0312L44.8371 45.0312L58.6352 45.0312" stroke="currentColor" stroke-width="4.13942" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M47.5977 56.0703L58.6361 45.0319L47.5977 33.9934" stroke="currentColor" strokeWidth="4.13942" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M31.0391 45.0312L44.8371 45.0312L58.6352 45.0312" stroke="currentColor" strokeWidth="4.13942" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
                 </div>
