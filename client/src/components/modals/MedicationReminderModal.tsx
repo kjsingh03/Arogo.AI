@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { bellz, file, locationMap, pencil } from "../../assets";
+import { bellz, file, locationMap } from "../../assets";
 import { RootState } from "../../store/store";
 import { useSearchParams } from "react-router-dom";
 import { useMemo } from "react";
