@@ -1,0 +1,10 @@
+@import "tailwindcss" important;
+
+@theme{
+    --color-accent:#23B2FF;
+    --color-primary-text:#2e2e2e;
+    --color-secondary-text:#606060;
+    --breakpoint-4xl:1920px;
+    --breakpoint-3xl:1720px;
+    --tracking-default:0.391px;
+}
