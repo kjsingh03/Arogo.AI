@@ -27,9 +27,9 @@ export default function MedicationReminderModal({ closeModal }: { closeModal: ()
     const formatDate = (timestamp: number) => {
         const date = new Date(timestamp);
         return {
-            day: date.getDate(), // Get day number (1-31)
-            weekday: date.toLocaleString("en-US", { weekday: "short" }), // Get weekday abbreviation (Mon, Tue)
-            month: date.toLocaleString("en-US", { month: "long" }) // Get full month name
+            day: date.getDate(), 
+            weekday: date.toLocaleString("en-US", { weekday: "short" }),
+            month: date.toLocaleString("en-US", { month: "long" }) 
         };
     };
     

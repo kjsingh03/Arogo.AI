@@ -1,22 +1,22 @@
-import { Route, Routes } from "react-router-dom";
-import { Footer, Navbar } from "./components";
-import { Home, MentalHealthDashboard, PhysicalHealthDashboard } from "./pages";
+import { Routes, Route } from "react-router-dom";
+import { Home, Login, MentalHealthDashboard, PhysicalHealthDashboard } from "./pages";
+import { AuthLayout, MainLayout } from "./components";
 
 export default function App() {
-
   return (
-    <>
-      <Navbar />
-      <div className="pt-18 2xl:pt-23.5">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/physical" element={<PhysicalHealthDashboard />} />
-          <Route path="/mental" element={<MentalHealthDashboard />} />
-          <Route path="/messages" element={<Home />} />
-          <Route path="/appointments" element={<Home />} />
-        </Routes>
-      </div>
-      <Footer />
-    </>
-  );
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/physical" element={<PhysicalHealthDashboard />} />
+        <Route path="/mental" element={<MentalHealthDashboard />} />
+        <Route path="/messages" element={<Home />} />
+        <Route path="/appointments" element={<Home />} />
+      </Route>
+
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Login />} />
+      </Route>
+    </Routes>
+  )
 }

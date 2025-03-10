@@ -2,6 +2,11 @@ import Navbar from "./navbar/Navbar";
 import Footer from "./footer/Footer";
 import HomeFAQ from "./faq/HomeFAQ";
 
+// Layout
+
+import AuthLayout from "./layouts/AuthLayout";
+import MainLayout from "./layouts/MainLayout";
+
 // Hero Sections
 import PhysicalDashboardMainHero from "./hero/physicalDashboard/MainHero";
 import StepsHero from "./hero/physicalDashboard/StepsHero";
@@ -21,14 +26,16 @@ import MedicationReminderModal from "./modals/MedicationReminderModal";
 
 export{
     Navbar,    
+    Footer,
+    HomeFAQ,
+    AuthLayout,
+    MainLayout,
     MedicationCard,
     UpcomingAppointmentCard,
-    Footer,
     StepsHero,
     PhysicalDashboardMainHero,
     AppointmentsHero,
     WellBeingHero,
-    HomeFAQ,
     ConsultAgainHero,
     DoctorCard,
     SpecialityHero,

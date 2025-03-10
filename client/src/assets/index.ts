@@ -57,68 +57,23 @@ import vcDoctor from './home/vcDoctor.svg';
 import videoPlayer from './home/videoPlayer.svg';
 import youtube from './home/youtube.svg';
 
+import authBg from './auth/authBg.svg';
+import donateHeart from './auth/donateHeart.svg';
+import googleAuth from './auth/googleAuth.svg';
+import greenTick from './auth/greenTick.svg';
+import macbook from './auth/macbook.svg';
+import redCross from './auth/redCross.svg';
+
 
 import logo from './logo.svg';
 
 
 export {
-    addressIcon,
-    bandaid,
-    bell,
-    bellz,
-    bin,
-    bird,
-    blackPlus,
-    bluedot,
-    bluePlus,
-    blueRightArrow,
-    bookDoctor,
-    chevronLeft,
-    chevronRight,
-    consultAgainDoctor,
-    dermat,
-    doctor1,
-    doctor2,
-    doctor3,
-    doctor4,
-    doctor5,
-    doctor6,
-    doctor7,
-    doctorBg,
-    doctorFg,
-    eyedoc,
-    file,
-    facebook,
-    flask,
-    gynaec,
-    heart,
-    icon1,
-    icon2,
-    icon3,
-    icon4,
-    icon5,
-    icon6,
-    iconBg,
-    instagram,
-    landingHeroBg,
-    linkedin,
-    locationPin,
-    locationMap,
-    lock,
-    logo,
-    mentalDoctorGroup,
-    pencil,
-    plus,
-    rightArrow,
-    rightArrow2,
-    search,
-    stethoscope,
-    target,
-    twitter,
-    upcomingDoctor,
-    upi,
-    user,
-    vcDoctor,
-    videoPlayer,
-    youtube,
+    addressIcon, bandaid, bell, bellz, bin, bird, blackPlus, bluedot, bluePlus,
+    blueRightArrow, bookDoctor, chevronLeft, chevronRight, consultAgainDoctor, dermat, doctor1,
+    doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, eyedoc, file,
+    facebook, flask, gynaec, heart, icon1, icon2, icon3, icon4, icon5, icon6, iconBg,
+    instagram, landingHeroBg, linkedin, locationPin, locationMap, lock, logo, mentalDoctorGroup, pencil, plus, rightArrow,
+    rightArrow2, search, stethoscope, target, twitter, upcomingDoctor, upi, user, vcDoctor, videoPlayer, youtube,
+    authBg, donateHeart, googleAuth, greenTick, macbook, redCross
 }
