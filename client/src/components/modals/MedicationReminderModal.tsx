@@ -39,14 +39,14 @@ export default function MedicationReminderModal({ closeModal }: { closeModal: ()
 
     return (
         <div onClick={closeModal} className="w-screen h-screen bg-[rgba(107,107,107,0.50)] fixed top-0 left-0 z-[1000] flex justify-center items-center ">
-            <div onClick={(e) => e.stopPropagation()} className="w-[630px] max-sm:w-full max-h-[90%] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-13 py-6.5 px-7 rounded-2xl max-sm:p-2.5 ">
+            <div onClick={(e) => e.stopPropagation()} className="w-[630px] max-sm:w-full max-h-[90%] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-12.5 py-8.5 px-7 rounded-2xl max-sm:p-2.5 ">
 
-                <div className="w-full max-w-118.5 py-3.75 flex flex-col items-center gap-3.5">
-                    <p className="w-full text-[22px] font-bold text-center">
+                <div className="w-full max-w-118.5 h-82 flex flex-col items-center gap-3.5 py-2.25 shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
+                    <p className="w-full text-[22px] leading-[30px] font-bold text-center">
                         Prescribing Doctor
                     </p>
 
-                    <div className="w-full flex flex-col items-center gap-2.5 text-center rounded-3xl shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
+                    <div className="w-full flex flex-col items-center gap-2.5 text-center rounded-3xl ">
                         <div className="w-[134.2px] h-34 overflow-hidden rounded-full ">
                             <img src={selectedMedication?.doctor.img} className="size-full" alt="doctor" />
                         </div>
@@ -66,7 +66,7 @@ export default function MedicationReminderModal({ closeModal }: { closeModal: ()
 
                 <div className="max-w-118.5 flex flex-col items-center gap-7.5">
                     <div className="flex flex-col items-center gap-5.5">
-                        <p className="text-lg font-semibold">{selectedMedication?.name} {selectedMedication?.times ? `(${selectedMedication?.times})` : ''}</p>
+                        <p className="text-lg font-semibold leading-[13.584px] ">{selectedMedication?.name} {selectedMedication?.times ? `(${selectedMedication?.times})` : ''}</p>
                         <div className="flex items-center gap-2.75">
                             {
                                 selectedMedication?.timeSlot?.map((slot, idx) => (
@@ -81,7 +81,7 @@ export default function MedicationReminderModal({ closeModal }: { closeModal: ()
                         </div>
                     </div>
 
-                   <div className="h-22.25 flex items-center justify-center gap-5">
+                   <div className="h-22.25 flex items-center justify-center gap-5 my-2">
                         <div className="w-24.5 h-full rounded-[17px] border-[2.26px] border-accent flex flex-col justify-center items-center gap-1.75">
                             <p className="text-lg font-semibold leading-[13.584px] tracking-[0.362px] ">{fromDate.day}</p>
                             <p className="text-xs font-medium leading-[13.584px] tracking-[0.24px] ">{fromDate.weekday}</p>

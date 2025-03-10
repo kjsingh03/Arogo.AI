@@ -23,12 +23,15 @@ export default function Navbar() {
         </Link>
 
         <div className="flex justify-center gap-9">
-          <ul className="hidden lg:flex justify-end items-center gap-9">
+          <ul className="hidden xl:flex justify-end items-center gap-9">
             <li>
               <Link className={`nav-item ${activeLink('messages') ? 'active' : ''}`} to="/messages">Messages</Link>
             </li>
             <li>
-              <Link className={`nav-item ${activeLink('mental') ? 'active' : ''}`} to="/">Mental health</Link>
+              <Link className={`nav-item ${activeLink('physical') ? 'active' : ''}`} to="/physical">Physical health</Link>
+            </li>
+            <li>
+              <Link className={`nav-item ${activeLink('mental') ? 'active' : ''}`} to="/mental">Mental health</Link>
             </li>
             <li>
               <Link className={`nav-item ${activeLink('appointments') ? 'active' : ''}`} to="/appointments">Appointments</Link>

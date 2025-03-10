@@ -24,6 +24,11 @@ import UpcomingAppointmentCard from "./cards/UpcomingAppointmentCard";
 import UpcomingAppointmentModal from "./modals/UpcomingAppointmentModal";
 import MedicationReminderModal from "./modals/MedicationReminderModal";
 
+// Other Utils
+import IconList from "./utils/IconList";
+
+
+
 export{
     Navbar,    
     Footer,
@@ -41,4 +46,5 @@ export{
     SpecialityHero,
     UpcomingAppointmentModal,
     MedicationReminderModal,
+    IconList,
 }

@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import { doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, icon1, icon2, icon3, icon4, icon5, icon6, iconBg, locationPin } from '../../../assets'
-
-const iconsList = [{ img: icon1, desc: "Consult Online" }, { img: icon2, desc: "Medicine alert" }, { img: icon3, desc: "View medical records" }, { img: icon4, desc: "Book test" }, { img: icon5, desc: "Aroga card coming" }, { img: icon6, desc: "Mental health" }];
+import { doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, locationPin } from '../../../assets'
+import IconList from '../../utils/IconList';
 
 const doctorsList = [doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7,];
 
 export default function PhysicalDashboardMainHero() {
   return (
-    <main style={{ backgroundImage: "url(../../../../src/assets/home/landingHeroBg.svg)", backgroundSize: "1680px", backgroundRepeat: "no-repeat", backgroundPosition: "100px -150px", }} className='w-[95%] 3xl:w-[85.417%] min-h-[881px] mx-auto flex flex-col gap-9.5 py-8.25 px-7 rounded-[33px] bg-[#F5F7F9] '>
+    <main className='physicalDashboardBg w-[95%] 3xl:w-[85.417%] min-h-[881px] mx-auto flex flex-col gap-9.5 py-8.25 px-7 rounded-[33px] bg-[#F5F7F9] '>
       <div className="w-full flex flex-col items-center justify-center gap-12 xl:h-[653px] xl:flex-row xl:items-start xl:justify-between xl:gap-0 ">
         <div className="w-full xl:max-w-[859px] 2xl:h-[407px] mt-[73px] ml-[0px] 3xl:ml-[55px] flex flex-col gap-7 ">
           <div style={{ background: 'rgba(255, 255, 255, 0.00)', boxShadow: '0px 0px 25.2px 0px rgba(30,162,233,0.14)' }} className="w-[377px] h-[47px] flex items-center gap-5.25 border border-[#FFFFFF01] rounded-[83.6px] p-[6px_18px] ">
@@ -75,19 +74,7 @@ export default function PhysicalDashboardMainHero() {
         </div>
       </div>
 
-      <div className="flex justify-center gap-4.5 ">
-        {
-          iconsList?.map((icon, idx) => (
-            <div key={'icon' + idx} className="w-[193.6px] h-[157.3px] flex flex-col justify-between relative ">
-              <img src={iconBg} className='w-[34.84px] h-[34.84px] object-contain absolute -top-1 left-4.5 -z-10 ' alt={'icon' + idx} />
-              <div className="h-16.5 w-16.5 ml-5.75 ">
-                <img src={icon.img} className='size-full object-contain z-10' alt={'icon' + idx} />
-              </div>
-              <p className='h-11.5 text-lg leading-[23px] tracking-[0.36px] font-light ml-4.5 '>{icon.desc}</p>
-            </div>
-          ))
-        }
-      </div>
+      <IconList/>
     </main>
   )
 }

@@ -8,7 +8,7 @@ export default function MedicationCard({ name, times, timeSlot, handleClick }: M
   }
 
   return (
-    <div className='w-full h-69.5 py-5.75 px-3.75 flex flex-col gap-7 rounded-[15.2px] bg-[#fafafa] '>
+    <div className='w-full h-69.5 py-5.75 px-3.75 flex flex-col gap-7 rounded-[15.2px] bg-[#fafafa] shadow-[0px_4.344px_32.257px_0px_rgba(0,0,0,0.05)]'>
       <div className="flex items-center justify-between border-b border-b-accent pb-5.25">
         <p className='w-[350px] h-6.75 line-clamp-1 pl-5.5 2xl:text-[19.55px] font-semibold tracking-default '>{name} {times ? '(' + times + ')' : ''}</p>
         <div className="flex items-center gap-3 justify-between">

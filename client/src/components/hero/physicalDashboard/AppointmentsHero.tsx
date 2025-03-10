@@ -52,7 +52,7 @@ export default function AppointmentsHero() {
         <MedicationReminderModal closeModal={closeModal} />
       )}
 
-      <div className='w-[95%] 3xl:w-[85.417%] min-h-[923.17px] mx-auto p-[83.59px_28px] 3xl:p-[113.59px_75px] rounded-[61px] bg-[#f7f8f8] flex flex-col gap-20 '>
+      <div className='w-[95%] 3xl:w-[85.417%] min-h-[923.17px] mx-auto p-[83.59px_28px] 3xl:p-[134px_75px] rounded-[61px] bg-[#f7f8f8] flex flex-col gap-20 '>
 
         <div className="flex flex-col gap-6">
 
@@ -81,7 +81,7 @@ export default function AppointmentsHero() {
                 <MedicationCard key={'medicationCard' + idx} handleClick={()=>handleMedicationCardClick(data.id)} {...data} />
               ))
             }
-            <div className='w-full h-69.5 flex items-center justify-center rounded-[15.2px] bg-[#FAFAFA]  ' >
+            <div className='w-full h-69.5 flex items-center justify-center rounded-[15.2px] bg-[#fafafa] shadow-[0px_4.344px_32.257px_0px_rgba(0,0,0,0.05)] ' >
               <div className="group w-[155.31px] btn btn-secondary p-[6.517px_18.437px_6.497px_19.55px] rounded-[26.1px] flex items-center gap-[5.4px]">
                 <svg viewBox="0 0 13 13" fill="none" className="w-[23.89px] h-[21.72px] object-contain p-1 fill-accent group-hover:fill-white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.2291 7.49712H6.90068V12.8733H5.34757V7.49712H0.0430931V6.06348H5.34757V0.687319H6.90068V6.06348H12.2291V7.49712Z" fill="currentColor" />

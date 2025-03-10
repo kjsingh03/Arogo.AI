@@ -6,5 +6,6 @@
     --color-secondary-text:#606060;
     --breakpoint-4xl:1920px;
     --breakpoint-3xl:1720px;
+    --breakpoint-xs:526px;
     --tracking-default:0.391px;
 }

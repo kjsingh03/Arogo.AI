@@ -3,21 +3,23 @@ import { AppointmentsHero, ConsultAgainHero, HomeFAQ, PhysicalDashboardMainHero,
 export default function PhysicalHealthDashboard() {
 
   return (
-    <div className='flex flex-col gap-9 relative'>
+    <div className='flex flex-col gap-9 relative pt-8.75'>
 
-      <PhysicalDashboardMainHero/>
+      <PhysicalDashboardMainHero />
 
-      <AppointmentsHero/>
+      <AppointmentsHero />
 
-      <ConsultAgainHero/>
+      <div className="py-20">
+        <ConsultAgainHero />
+      </div>
 
       <StepsHero />
 
-      <SpecialityHero/>
+      <SpecialityHero />
 
       <WellBeingHero />
 
-      <HomeFAQ/>
+      <HomeFAQ />
     </div>
   )
 }

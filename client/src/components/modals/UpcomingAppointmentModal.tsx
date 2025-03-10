@@ -17,30 +17,32 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
 
     return (
         <div onClick={closeModal} className="w-screen h-screen bg-[rgba(107,107,107,0.50)] fixed top-0 left-0 z-[1000] flex justify-center items-center ">
-            <div onClick={(e) => e.stopPropagation()} className="w-[630px] max-sm:w-full h-[90%] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-6.5 py-6 px-15 rounded-2xl max-sm:p-2.5 ">
-                <p className="w-full max-w-118.5 text-2xl font-bold text-center">
+            <div onClick={(e) => e.stopPropagation()} className="w-[630px] max-sm:w-full h-[90%] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-4 py-6 px-15 rounded-2xl max-sm:p-2.5 ">
+                <p className="w-full max-w-118.5 text-2xl leading-[29.71px] font-bold text-center">
                     Upcoming appointments Details
                 </p>
 
-                <div className="w-full max-w-118.5 flex flex-col items-center gap-2.5 text-center rounded-3xl shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
-                    <div className="w-[134.2px] h-34 overflow-hidden rounded-full ">
-                        <img src={selectedAppointment?.doctor.img} className="size-full" alt="doctor" />
-                    </div>
-                    <div className="flex flex-col ">
-                        <p className='text-[22px] font-medium leading-[23px] tracking-[0.478px] line-clamp-1 '>{selectedAppointment?.doctor.name}</p>
-                        <p className='text-lg font-medium leading-[23px] line-clamp-1 '>{selectedAppointment?.doctor.speciality}</p>
-                    </div>
-                    <div className=" ">
-                        <p className="text-lg font-semibold">{selectedAppointment?.doctor.clinic}</p>
-                        <div className="flex items-center leading-[23px] gap-[13.29px] hover:border-b-accent bg-acc border-b-transparent cursor-pointer border-b  ">
-                            <p className='text-accent leading-[23px] font-light cursor-pointer line-clamp-1 '>{selectedAppointment?.doctor.location}</p>
-                            <img src={locationMap} className="xl:w-[28.238px] h-[28.238px] " alt="" />
+                <div className="w-118.5 min-h-72.5 py-[10.5px] flex flex-col items-center gap-2.5 text-center rounded-3xl shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
+                    {/* <div className="w-full max-w-118.5 flex flex-col items-center gap-2.5 text-center rounded-3xl shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]"> */}
+                        <div className="w-[134.2px] h-34 overflow-hidden rounded-full ">
+                            <img src={selectedAppointment?.doctor.img} className="size-full" alt="doctor" />
                         </div>
-                    </div>
+                        <div className="flex flex-col ">
+                            <p className='text-[22px] font-medium leading-[23px] tracking-[0.478px] line-clamp-1 '>{selectedAppointment?.doctor.name}</p>
+                            <p className='text-lg font-medium leading-[23px] line-clamp-1 '>{selectedAppointment?.doctor.speciality}</p>
+                        </div>
+                        <div className=" ">
+                            <p className="text-lg font-semibold leading-[23px]">{selectedAppointment?.doctor.clinic}</p>
+                            <div className="flex items-center leading-[23px] gap-[13.29px] hover:border-b-accent bg-acc border-b-transparent cursor-pointer border-b  ">
+                                <p className='text-accent leading-[23px] font-light cursor-pointer line-clamp-1 '>{selectedAppointment?.doctor.location}</p>
+                                <img src={locationMap} className="xl:w-[28.238px] h-[28.238px] " alt="" />
+                            </div>
+                        </div>
+                    {/* </div> */}
                 </div>
 
-                <div className="flex gap-4 items-center mx-0 my-3.5">
-                    <div className="max-w-[338px] max-h-35 flex flex-col items-center gap-2.5">
+                <div className="flex gap-4 items-center mx-0">
+                    <div className="max-w-[338px] min-h-[147px] max-h-35 flex flex-col items-center gap-2.5">
                         <div className="h-11.25 flex items-center gap-3.75">
                             <p className="min-w-24 text-center leading-[13.584px] p-[16px_20px_14px_20px] font-medium text-lg text-accent rounded-xl border border-accent border-solid">{selectedAppointment?.times}</p>
                             <p className="min-w-35 text-center leading-[13.584px] p-[16px_20px_14px_20px] font-medium text-lg text-accent rounded-xl border border-accent border-solid">{selectedAppointment?.date}</p>
@@ -58,7 +60,7 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
 
 
 
-                <div className="h-50.25 px-4 my-1 rounded-2xl flex flex-col gap-5.75 shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
+                <div className="h-50.25 px-4 py-5 rounded-[18px] flex flex-col gap-5.75 shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
                     <div className="flex justify-between items-center text-xl font-bold">
                         <p className="leading-[13.584px]">Symptoms</p>
                         <div className="w-[22px] h-[22px] relative">
@@ -70,7 +72,7 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
                     </p>
                 </div>
 
-                <div className="w-full h-32.5 my-2 rounded-2xl flex flex-col gap-6 shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
+                <div className="w-full h-38.5 px-4 py-4 rounded-2xl flex flex-col gap-6 shadow-[0px_4px_29.7px_rgba(0,0,0,0.05)]">
                     <div className="flex justify-between items-center text-xl font-bold">
                         <p className="leading-[13.584px]">Document Shared</p>
                         <div className="w-[22px] h-[22px] relative">

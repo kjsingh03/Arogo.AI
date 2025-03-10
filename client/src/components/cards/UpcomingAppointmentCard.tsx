@@ -3,7 +3,7 @@ import { Appointment } from '../../types'
 
 export default function UpcomingAppointmentCard({ doctor, times, date, mode, queue, handleClick }: Appointment & { handleClick: () => void }) {
     return (
-        <div onClick={handleClick} className='w-full xl:h-[183.55px] rounded-[15.2px] p-[12px_10.2px] 2xl:p-[12px_40.2px] flex flex-col xl:flex-row items-center justify-between text-center xl:text-start gap-11 xl:gap-0 bg-white cursor-pointer'>
+        <div onClick={handleClick} className='w-full xl:h-[183.55px] rounded-[15.2px] p-[12px_10.2px] 2xl:p-[12px_40.2px] flex flex-col xl:flex-row items-center justify-between text-center xl:text-start gap-11 xl:gap-0 bg-[#f7f7f8] shadow-[0px_4.344px_32.257px_0px_rgba(0,0,0,0.05)] cursor-pointer'>
             <div className="w-[129.44px] h-[131px] overflow-hidden rounded-full ">
                 <img src={doctor.img} className='size-full object-cover' alt="doctor" />
             </div>

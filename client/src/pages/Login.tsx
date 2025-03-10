@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { donateHeart, googleAuth, logo } from "../assets";
+import { useNavigate } from "react-router-dom";
 
 interface FeatureData {
     altText: string;
@@ -33,6 +34,8 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [pin, setPin] = useState(["", "", "", "", "", ""]);
 
+    const navigate = useNavigate();
+
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     };
@@ -42,10 +45,12 @@ export default function Login() {
     };
 
     const handleContinue = () => {
+        navigate("/physical")
         console.log("Signing in with:", { email, pin: pin.join("") });
     };
 
     const handleGoogleSignIn = () => {
+        navigate("/physical")
         console.log("Signing in with Google");
     };
 
