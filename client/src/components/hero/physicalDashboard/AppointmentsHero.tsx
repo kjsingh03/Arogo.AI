@@ -4,13 +4,13 @@ import UpcomingAppointmentModal from '../../modals/UpcomingAppointmentModal';
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store/store';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Appointment, Medication } from '../../../types';
+import { AppointmentType, MedicationType } from '../../../types';
 import MedicationReminderModal from '../../modals/MedicationReminderModal';
 import { useMemo } from 'react';
 
 export default function AppointmentsHero() {
 
-  const { upcomingAppointmentList, medicationList }: { upcomingAppointmentList: Appointment[], medicationList: Medication[] } = useSelector((state: RootState) => state.data);
+  const { upcomingAppointmentList, medicationList }: { upcomingAppointmentList: AppointmentType[], medicationList: MedicationType[] } = useSelector((state: RootState) => state.data);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -62,7 +62,7 @@ export default function AppointmentsHero() {
 
           <div className="grid grid-cols-2 xl:grid-cols-1 gap-6.25 place-items-center">
             {
-              upcomingAppointmentList?.map((data: Appointment, idx) => (
+              upcomingAppointmentList?.map((data, idx) => (
                 <UpcomingAppointmentCard key={'upcomingAppointmentCard' + idx} {...data} handleClick={() => handleAppointmentCardClick(data.id)} />
               ))
             }

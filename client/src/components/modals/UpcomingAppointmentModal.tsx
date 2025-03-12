@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { file, locationMap, pencil } from "../../assets";
 import { RootState } from "../../store/store";
-import { Appointment } from "../../types";
+import { AppointmentType } from "../../types";
 import { useSearchParams } from "react-router-dom";
 
 function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
@@ -12,7 +12,7 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
 
     const appointmentId = searchParams.get("appointmentId");
 
-    const selectedAppointment = upcomingAppointmentList.find((appointment: Appointment) => appointment.id === appointmentId);
+    const selectedAppointment = upcomingAppointmentList.find((appointment: AppointmentType) => appointment.id === appointmentId);
 
 
     return (

@@ -1,5 +1,5 @@
-import { DoctorCardProps } from "../../types/props";
-import { Appointment, Medication, User } from "../../types";
+import { AppointmentType, MedicationType, UserType } from "./entities";
+import { DoctorCardProps } from "./props";
 
 export interface UISliceInterface {
     navOpen: boolean;
@@ -8,15 +8,14 @@ export interface UISliceInterface {
 }
 
 export interface UserSliceInterface {
-    user: User;
-    // formData: SignUpFormData;
+    user: UserType;
     isAuthenticated: boolean;
     authLoading: boolean;
     error: string | null;
 }
 
 export interface dataSliceInterface {
-    upcomingAppointmentList: Appointment[];
-    medicationList: Medication[];
+    upcomingAppointmentList: AppointmentType[];
+    medicationList: MedicationType[];
     consultAgainDoctorList: DoctorCardProps[];
 }

@@ -26,7 +26,9 @@ import MedicationReminderModal from "./modals/MedicationReminderModal";
 
 // Other Utils
 import IconList from "./utils/IconList";
-
+import AuthHappySection from "./utils/AuthHappySection";
+import Input from "./inputs/Input";
+import PinInput from "./inputs/PinInput";
 
 
 export{
@@ -47,4 +49,7 @@ export{
     UpcomingAppointmentModal,
     MedicationReminderModal,
     IconList,
+    AuthHappySection,
+    Input,
+    PinInput,
 }

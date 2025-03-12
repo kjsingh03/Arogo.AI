@@ -1,39 +1,12 @@
-export interface User {
-    email: string;
-    firstName: string;
-    lastName: string;
-    token?: string;
-    dp?: string;
-}
+import { UserType, DoctorType, AppointmentType, MedicationType, } from './entities'
+import { RegisterUserFormData,LoginUserFormData } from './formData'
+import { DoctorCardProps, CustomInputProps, FAQItemProps, FeatureItemProps, PinInputProps, SpecialityItemProps, StatisticItemProps, StepItemProps, } from './props'
+import { UISliceInterface,UserSliceInterface,dataSliceInterface, } from './slices'
 
-export interface Doctor {
-    img: string;
-    name: string;
-    speciality: string;
-    clinic: string;
-    location: string;
-}
 
-export interface Appointment {
-    doctor: Doctor;
-    times: string;
-    date: string;
-    mode: string;
-    queue: string;
-    id: string;
-    fee?: number;
-    paid?: boolean;
-    symptoms?: string;
-    documents?: string[];
-}
-
-export interface Medication {
-    doctor: Doctor;
-    from:number;
-    to:number;
-    id: string;
-    name: string;
-    times?: string;
-    timeSlot?: { time: string; status: string }[];
-    documents?: string[];
+export type {
+    UserType, DoctorType, AppointmentType, MedicationType,
+    RegisterUserFormData,LoginUserFormData,
+    DoctorCardProps, CustomInputProps, FAQItemProps, FeatureItemProps, PinInputProps, SpecialityItemProps, StatisticItemProps, StepItemProps,
+    UISliceInterface,UserSliceInterface,dataSliceInterface,
 }

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UISliceInterface } from "../interfaces";
+import { UISliceInterface } from "../../types";
 
 const initialState: UISliceInterface = {
     navOpen: false,

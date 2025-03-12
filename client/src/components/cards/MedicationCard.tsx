@@ -1,7 +1,7 @@
 import { bellz, bin, pencil } from '../../assets';
-import { Medication } from '../../types';
+import { MedicationType } from '../../types';
 
-export default function MedicationCard({ name, times, timeSlot, handleClick }: Medication & { handleClick: () => void }) {
+export default function MedicationCard({ name, times, timeSlot, handleClick }: MedicationType & { handleClick: () => void }) {
 
   const getColor = (status: string) => {
     return status === "Missed" ? '#2E2E2E' : status === "Taken" ? '#00CA4E' : '#FFA929' // Allowed status : Missed, Taken, or Upcoming

@@ -1,225 +1,151 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { donateHeart, googleAuth, logo } from "../assets";
-import { useNavigate } from "react-router-dom";
-
-interface FeatureData {
-    altText: string;
-    description: string;
-}
-
-const features: FeatureData[] = [
-    {
-        altText: "Meditation icon",
-        description:
-            "Learn to meditate from the world's best teachers with video courses & library of 500+ meditations",
-    },
-    {
-        altText: "Challenge icon",
-        description:
-            "Build your meditation habit during live challenges with thousands of other meditators",
-    },
-    {
-        altText: "Sleep icon",
-        description: "Fall — and stay — asleep with relaxing Sleep sessions",
-    },
-    {
-        altText: "Podcast icon",
-        description:
-            "Listen ad-free to the Ten Percent Happier & More Than a Feeling podcast",
-    },
-];
+import { ChangeEvent, useEffect, useState } from "react";
+import { googleAuth, logo } from "../assets";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { AuthHappySection, Input, PinInput } from "../components";
+import { validateEmail, validateOtp, validateSecurityPin } from "../validations";
+import { LoginUserFormData } from "../types";
+import { authLoginUser, authVerifyOTP } from "../services";
 
 export default function Login() {
 
-    const [email, setEmail] = useState("");
-    const [pin, setPin] = useState(["", "", "", "", "", ""]);
+    const [formData, setFormData] = useState<LoginUserFormData>({ securityPin: "", email: "", otp: "" });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [success, setSuccess] = useState<{ [key: string]: string }>({});
+    const [loading, setLoading] = useState<boolean>(false);
 
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const step = searchParams.get("step") || "1";
 
-    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
+        if (errors[e.target.name]) {
+            setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
+        }
     };
 
-    const handlePinChange = (newPin: string[]) => {
-        setPin(newPin);
-    };
-
-    const handleContinue = () => {
-        navigate("/physical")
-        console.log("Signing in with:", { email, pin: pin.join("") });
-    };
+    const updateStep = (newStep: string) => setSearchParams({ step: newStep });
 
     const handleGoogleSignIn = () => {
-        navigate("/physical")
-        console.log("Signing in with Google");
+        console.log("Signing up with Google");
+        navigate("/physical");
     };
 
-    const handleSignUp = () => {
-        console.log("Navigating to sign up");
+    const handleSendOtp = async () => {
+        const emailError = validateEmail(formData.email);
+        const pinError = validateSecurityPin(formData.securityPin);
+        if (emailError || pinError) {
+            setErrors({ email: emailError, securityPin: pinError });
+            return;
+        }
+
+        setErrors({});
+        setLoading(!loading);
+
+        try {
+            const res = await authLoginUser(formData.email, formData.securityPin);
+            console.log(res)
+            if (res.status === 'success') {
+                updateStep("2");
+                setSuccess({ email: 'Verify your email by entering the 6-digit OTP sent to your inbox' })
+            }
+        } catch (error: any) {
+            console.log(error)
+            setErrors({ email: error.message, securityPin: error.message });
+        } finally {
+            setLoading(!loading);
+        }
     };
 
-    const handleOtpSignIn = () => {
-        console.log("Signing in with OTP");
+    const handleVerifyOtp = async () => {
+        const emailError = validateEmail(formData.email);
+        const otpError = validateOtp(formData.otp);
+        if (emailError || otpError) {
+            setErrors({ email: emailError, otp: otpError });
+            return;
+        }
+
+        setErrors({});
+        setLoading(!loading)
+
+        try {
+            const res = await authVerifyOTP(formData.email, formData.otp);
+            if (res.status === 'success') {
+                console.log(res)
+                localStorage.setItem('credentials', JSON.stringify(res.user))
+                setSuccess({ securityPin: 'User logged in successfully' })
+                setTimeout(() => navigate("/physical"), 1200)
+            }
+        } catch (error: any) {
+            console.log(error)
+            setErrors({ otp: error.message });
+        } finally {
+            setLoading(!loading)
+        }
     };
+
+    // console.log(formData)
+    // console.log(errors)
+
+    useEffect(() => {
+        navigate("/login")
+    }, [])    
 
     return (
         <div className="authbg w-full h-screen overflow-y-auto py-16 pl-30.75 pr-32.5 max-xl:px-10 flex items-center flex-col gap-20">
             <div className="flex flex-col items-center gap-2.5">
-                <div className="flex items-center gap-6.25">
-                    <div className="w-17.25 h-17.25 overflow-hidden rounded-full">
-                        <img src={logo} className="size-full object-cover" alt="logo" />
+                <Link to="/">
+                    <div className="flex items-center gap-6.25">
+                        <div className="w-17.25 h-17.25 overflow-hidden rounded-full">
+                            <img src={logo} className="size-full object-cover" alt="logo" />
+                        </div>
+                        <p className="text-[#FAFAFA] text-4xl font-semibold ">Arogo AI</p>
                     </div>
-                    <p className="text-[#FAFAFA] text-4xl font-semibold ">Arogo AI</p>
-                </div>
-                <p className="text-[#FAFAFA] text-[22px] font-medium ">Your Health, Simplified – Care at Your Fingertips.</p>
+                </Link>
+                <p className="text-[#FAFAFA] text-[22px] font-medium ">Your Health, Simplified - Care at Your Fingertips.</p>
             </div>
-            <div className="flex max-xl:flex-col gap-8">
-                <div className="w-full max-w-[739px] h-131.5 px-23.5 py-16 max-2xl:px-4 mx-auto my-0 rounded-3xl bg-[#fafafa] shadow-[0px_4px_36px_rgba(0,0,0,0.1)] max-md:px-2">
-                    <h2 className="mb-10 text-2xl font-medium leading-5 text-center">
-                        Do what it actually takes to be happier
-                    </h2>
-                    <div className="grid relative gap-10 grid-cols-[repeat(2,1fr)] max-md:gap-8 max-sm:gap-10 max-sm:grid-cols-[1fr]">
-                        {features.map((feature, index) => (
-                            <FeatureCard
-                                key={`feature-${index}`}
-                                altText={feature.altText}
-                                description={feature.description}
-                            />
-                        ))}
+            <div className="w-full h-[676px] flex max-xl:flex-col gap-8">
+                <AuthHappySection />
+                <div className="w-full xl:max-w-[628px] min-h-full px-16.5 pt-6 rounded-[28.2px] bg-[#fafafa] shadow-[0px_4px_36px_rgba(0,0,0,0.10)]">
+                    <div className="w-full h-full flex flex-col items-center justify-between">
+                        <div className="w-full h-full flex flex-col items-center gap-5.5 justify-between">
+                            <div className="flex flex-col items-center text-center gap-3.5">
+                                <h1 className="text-[42px] font-medium leading-[25.659px] max-sm:text-3xl">Sign In</h1>
+                                <p className="text-[22px] leading-[25.659px] max-sm:text-base">Your mental health journey starts here.</p>
+                            </div>
+
+                            <div className="w-full flex flex-col items-center gap-3.5">
+                                <Input name="email" placeholder="Enter your email" label="Enter Registered email" onChange={handleChange} value={formData.email} error={errors.email} success={success.email} />
+
+                                {
+                                    step !== "2" ?
+                                        <PinInput value={formData.securityPin} label="Security Pin" onChange={(newSecurityPin: string) => { setFormData({ ...formData, securityPin: newSecurityPin }); setErrors({}) }} error={errors.securityPin} /> :
+                                        <PinInput value={formData.otp} label="OTP" onChange={(newotp: string) => { setFormData({ ...formData, otp: newotp }); setErrors({}) }} error={errors.otp} />
+                                }
+                            </div>
+
+                        </div>
+                        <div className="w-full max-w-[496px] py-2 flex flex-col gap-3 items-center text-center">
+                            <button onClick={() => step !== "2" ? handleSendOtp() : handleVerifyOtp()} className="h-16 btn btn-primary">
+                                <p className="text-[22px] leading-[25.6px]">Continue</p>
+                            </button>
+                            <p className="text-[22px] leading-[25.6px]">or</p>
+                            <button onClick={handleGoogleSignIn} className="btn btn-dark flex gap-6.5 items-center justify-center">
+                                <img src={googleAuth} className="w-[43.6px] h-[43.6px]" alt="google icon" />
+                                <p className="text-[22px] leading-[25.6px] font-medium">Continue with Google</p>
+                            </button>
+                            <Link to="/signup">
+                                <p className="text-xl leading-[25.6px]">
+                                    Don't have an account? <span className="font-semibold text-accent cursor-pointer hover:underline">Sign Up</span>
+                                </p>
+                            </Link>
+                        </div>
+
                     </div>
-                </div>
-                <div className="w-full xl:max-w-[489px] flex flex-col items-center p-8 rounded-3xl bg-[#fafafa] h-[526px] shadow-[0px_4px_36px_rgba(0,0,0,0.10)]">
-                    <h1 className="mb-3 text-3xl font-medium leading-5 max-sm:text-z3xl">
-                        Sign In
-                    </h1>
-                    <p className="mb-7 text-lg leading-5 max-sm:text-base">
-                        Your mental health journey starts here.
-                    </p>
 
-                    <label className="self-start mb-3 ml-3 text-sm leading-5">
-                        Enter Registered email
-                    </label>
-                    <div className="px-8 py-4 mb-3.5 bg-gray-100 border border-solid border-neutral-200 h-[54px] rounded-[65px] w-[385px] max-md:w-full max-md:max-w-[385px]">
-                        <input
-                            type="email"
-                            placeholder="example@email.com"
-                            className="w-full h-full text-base bg-transparent border-none outline-none text-[#fafafa] leading-[20px]0"
-                            value={email}
-                            onChange={handleEmailChange}
-                        />
-                    </div>
-
-                    <label className="self-start mb-3 ml-3 text-sm leading-5">
-                        Enter 6-digit Security PIN
-                    </label>
-                    <PinInput onChange={handlePinChange} />
-
-                    <button
-                        className="flex items-center justify-center mb-3 text-lg font-medium bg-sky-400 cursor-pointer h-[50px] rounded-[40px] text-[#fafafa] leading-[20px] w-[356px] max-md:w-full max-md:max-w-[385px]"
-                        onClick={handleContinue}
-                    >
-                        Continue
-                    </button>
-
-                    <p className="mb-5 text-sm font-medium">
-                        Sign In with
-                        <span className="text-sky-400 cursor-pointer ml-1" onClick={handleOtpSignIn}>OTP</span>
-                    </p>
-
-                    <button className="flex items-center px-14 py-2 mb-3 cursor-pointer bg-[#2a2a2a] h-[50px] rounded-[40px] w-[356px] max-md:w-full max-md:max-w-[385px] max-sm:px-5 max-sm:py-2" onClick={handleGoogleSignIn}                    >
-                        <img src={googleAuth} alt="Google" className="h-[34px] w-[34px]" />
-                        <span className="text-lg font-medium text-[#fafafa] leading-[20px] max-sm:text-base">
-                            Continue with Google
-                        </span>
-                    </button>
-
-                    <p className="text-base">
-                        Don't have an account?
-                        <span
-                            className="font-semibold text-sky-400 cursor-pointer ml-1"
-                            onClick={handleSignUp}
-                        >
-                            Sign Up
-                        </span>
-                    </p>
                 </div>
             </div>
         </div>
     )
-};
-
-function FeatureCard({ altText, description }: FeatureData) {
-    return (
-        <article className="flex flex-col items-center gap-2.5 px-5 py-0 text-center max-sm:p-0">
-            <div className="w-14 h-14 relative overflow-hidden">
-                <img
-                    src={donateHeart}
-                    alt={altText}
-                    className="size-full"
-                />
-            </div>
-            <p className="text-base leading-5 max-w-[236px] max-sm:max-w-full">
-                {description}
-            </p>
-        </article>
-    );
-};
-
-interface PinInputProps {
-    onChange: (pin: string[]) => void;
-}
-
-function PinInput({ onChange }: PinInputProps) {
-    const [pin, setPin] = useState<string[]>(Array(6).fill(""));
-    const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
-    useEffect(() => {
-        inputRefs.current = inputRefs.current.slice(0, 6);
-
-        if (inputRefs.current[0]) {
-            inputRefs.current[0].focus();
-        }
-    }, []);
-
-    const handleChange = (index: number, value: string) => {
-        if (!/^\d*$/.test(value)) return;
-
-        const newPin = [...pin];
-        newPin[index] = value.slice(0, 1);
-        setPin(newPin);
-        onChange(newPin);
-
-        if (value && index < 5) {
-            inputRefs.current[index + 1]?.focus();
-        }
-    };
-
-    const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Backspace" && !pin[index] && index > 0) {
-            inputRefs.current[index - 1]?.focus();
-        }
-    };
-
-    return (
-        <div className="flex gap-1.5 mb-5 max-md:w-full max-md:max-w-[385px] max-sm:flex-wrap max-sm:gap-2.5 max-sm:justify-center">
-            {Array(6)
-                .fill(null)
-                .map((_, index) => (
-                    <div
-                        key={`pin-input-${index}`}
-                        className="flex justify-center items-center bg-gray-100 rounded-2xl border border-solid border-neutral-200 h-[60px] w-[60px] max-sm:h-[50px] max-sm:w-[50px]"
-                    >
-                        <input
-                            ref={(el) => { inputRefs.current[index] = el }}
-                            type="text"
-                            maxLength={1}
-                            value={pin[index]}
-                            onChange={(e) => handleChange(index, e.target.value)}
-                            onKeyDown={(e) => handleKeyDown(index, e)}
-                            className="w-full h-full text-center text-xl bg-transparent border-none outline-none"
-                        />
-                    </div>
-                ))}
-        </div>
-    );
 };

@@ -11,7 +11,7 @@ export default function Navbar() {
     <nav className='w-full h-23.5 fixed mx-auto px-7.5 pt-[15px flex gap-10 items-center justify-end bg-white z-[100]'>
       <div className="w-full flex justify-between items-center p-[17px_19px] ">
 
-        <Link to="/physical">
+        <Link to="/">
           <div className="w-[158.8px] flex gap-4 items-center ">
             <div className="w-11 h-11 overflow-hidden">
               <img src={logo} className='size-full object-cover' alt="" />

@@ -4,7 +4,7 @@ const iconsList = [{ img: icon1, desc: "Consult Online" }, { img: icon2, desc: "
 
 export default function IconList() {
     return (
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 place-items-center justify-center max-2xl:gap-3 gap-10 ">
+        <div className="max-w-[1486px] mx-auto grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 place-items-center justify-center max-2xl:gap-3 gap-10 ">
             {
                 iconsList?.map((icon, idx) => (
                     <div key={'icon' + idx} className="w-full z-0">

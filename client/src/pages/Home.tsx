@@ -7,7 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/login");
+      navigate("/signup");
     }, 1000);
   })
 
