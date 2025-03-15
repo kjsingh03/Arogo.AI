@@ -1,22 +1,35 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, MentalHealthDashboard, PhysicalHealthDashboard, Signup } from "./pages";
-import { AuthLayout, MainLayout } from "./components";
+import { ArogoCardServicePage, Assessment, BookTestServicePage, ConsultOnlineServicePage, HealthVaultServicePage, Home, Login, MedicineAlertServicePage, MentalHealthDashboard, MentalHealthServicePage, NotFound, PhysicalHealthDashboard, Signup } from "./pages";
+import { AuthLayout, MainLayout, ServiceLayout } from "./components";
 
 export default function App() {
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/physical" element={<PhysicalHealthDashboard />} />
         <Route path="/mental" element={<MentalHealthDashboard />} />
         <Route path="/messages" element={<Home />} />
         <Route path="/appointments" element={<Home />} />
+        <Route path="/assessment" element={<Assessment />} />
+        <Route path="/*" element={<NotFound />} />
       </Route>
 
-      <Route element={<AuthLayout />}>
+      <Route path="/" element={<ServiceLayout />}>
+        <Route path="/service/mental-health" element={<MentalHealthServicePage />} />
+        <Route path="/service/medicine-alert" element={<MedicineAlertServicePage />} />
+        <Route path="/service/health-vault" element={<HealthVaultServicePage />} />
+        <Route path="/service/book-test" element={<BookTestServicePage />} />
+        <Route path="/service/consult-online" element={<ConsultOnlineServicePage />} />
+        <Route path="/service/arogo-card" element={<ArogoCardServicePage />} />
+      </Route>
+
+      <Route path="/" element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Route>
+
+
     </Routes>
   )
 }

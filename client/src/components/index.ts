@@ -6,6 +6,7 @@ import HomeFAQ from "./faq/HomeFAQ";
 
 import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
+import ServiceLayout from "./layouts/ServiceLayout";
 
 // Hero Sections
 import PhysicalDashboardMainHero from "./hero/physicalDashboard/MainHero";
@@ -19,16 +20,23 @@ import SpecialityHero from "./hero/physicalDashboard/SpecialityHero";
 import DoctorCard from "./cards/UpcomingDoctorCard";
 import MedicationCard from "./cards/MedicationCard";
 import UpcomingAppointmentCard from "./cards/UpcomingAppointmentCard";
+import HealthVaultCard from "./cards/HealthVaultCard";
 
 // Modals
 import UpcomingAppointmentModal from "./modals/UpcomingAppointmentModal";
 import MedicationReminderModal from "./modals/MedicationReminderModal";
+import DeleteHealthVaultModal from "./modals/DeleteHealthVaultModal";
+import AddHealthVaultModal from "./modals/AddHealthVaultModal";
 
 // Other Utils
 import IconList from "./utils/IconList";
 import AuthHappySection from "./utils/AuthHappySection";
 import Input from "./inputs/Input";
 import PinInput from "./inputs/PinInput";
+import Sidebar from "./sidebar/Sidebar";
+import AIInsightModal from "./modals/AIInsightModal";
+import ShareRecordsModal from "./modals/ShareRecordsModal";
+import ViewPrescriptionModal from "./modals/ViewPrescriptionModal";
 
 
 export{
@@ -52,4 +60,12 @@ export{
     AuthHappySection,
     Input,
     PinInput,
+    Sidebar,
+    ServiceLayout,
+    HealthVaultCard,
+    DeleteHealthVaultModal,
+    AddHealthVaultModal,
+    AIInsightModal,
+    ShareRecordsModal,
+    ViewPrescriptionModal,
 }

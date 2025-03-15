@@ -8,6 +8,7 @@ export const authRequestOTP = async (email: string): Promise<{ status?: string, 
         const res = await axios.post(`${SERVER_URL}/api/auth/request-otp`, { email });
         return res.data;
     } catch (error: any) {
+        console.log(error)
         throw new Error(error.response?.data?.message || "Failed to send OTP. Please try again.");
     }
 };
@@ -28,7 +29,7 @@ export const authRegisterUser = async (formData: RegisterUserFormData): Promise<
         return res.data
     } catch (error: any) {
         console.log(error)
-        throw new Error(error.response.data.message || "Failed to verify OTP. Please try again")
+        throw new Error(error.response.data.message || "Failed to register user. Please try again")
     }
 }
 
@@ -38,7 +39,7 @@ export const authLoginUser = async (email: string, securityPin: string): Promise
         return res.data
     } catch (error: any) {
         console.log(error)
-        throw new Error(error.response.data.message || "Failed to verify OTP. Please try again")
+        throw new Error(error.response.data.message || "Failed to login user. Please try again")
     }
 }
 

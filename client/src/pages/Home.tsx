@@ -7,9 +7,9 @@ export default function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/signup");
+      navigate("/physical");
     }, 1000);
-  })
+  },[])
 
   return (
     <div className='flex flex-col gap-9 min-h-[60vh] '>

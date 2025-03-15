@@ -19,3 +19,18 @@ export interface LoginUserFormData {
     email: string;
     otp: string;
 }
+
+export interface HealthVaultFormData {
+    type: string;
+    hospital: string;
+    doctor: string;
+    testName: string;
+    speciality: string;
+    diagnosis: string;
+    prescriptionId: number;
+    doctorId: number;
+    id: string;
+    tag: string;
+    state: "mental" | "physical";
+    timestamp: number;
+}

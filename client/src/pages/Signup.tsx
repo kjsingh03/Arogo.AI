@@ -50,12 +50,12 @@ export default function Signup() {
                 setSuccess({ otp: 'Verify your email by entering the 6-digit OTP sent to your inbox' })
             }
         } catch (error: any) {
+            console.log(error)
             setErrors({ email: error.message });
         } finally {
             setLoading(!loading);
         }
     };
-
 
     const handleVerifyOtp = async () => {
         const otpError = validateOtp(formData.otp);

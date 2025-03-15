@@ -52,7 +52,7 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
                             Consultation Fee {selectedAppointment?.fee} {selectedAppointment?.paid ? 'Paid' : 'Due'}
                         </p>
                     </div>
-                    <div className="w-36.25 h-36.75 flex flex-col justify-between p-[22px_27px_7px_28px] text-center bg-accent rounded-3xl text-neutral-50">
+                    <div className="w-36.25 h-36.75 flex flex-col justify-between p-[22px_27px_7px_28px] text-center bg-accent rounded-3xl text-[#f7f8f8]">
                         <p className="mb-2.5 leading-[13.584px] font-medium text-lg">Queue</p>
                         <p className="h-14 text-[74px] leading-[13.584px] font-medium ">{selectedAppointment?.queue}</p>
                     </div>
@@ -95,10 +95,10 @@ function UpcomingAppointmentModal({ closeModal }: { closeModal: () => void }) {
                 </div>
 
                 <div className="w-full flex gap-4.75 justify-end mt-5 max-sm:flex-col max-sm:items-center">
-                    <button onClick={closeModal} className="px-7 py-3.5 text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px]  btn btn-secondary">
+                    <button onClick={closeModal} className="max-w-45 p-[14px_8.063px_14.03px_27px] text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px]  btn btn-secondary">
                         Back to home
                     </button>
-                    <button className="px-7 py-3.5 text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px] btn btn-primary">
+                    <button className="max-w-45 text-center p-[14px_8.063px_14.03px_8px] text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px] btn btn-primary">
                         Reschedule
                     </button>
                 </div>

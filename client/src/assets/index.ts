@@ -9,8 +9,6 @@ import bluedot from './physicalDashboard/bluedot.svg';
 import bluePlus from './physicalDashboard/bluePlus.svg';
 import blueRightArrow from './physicalDashboard/blueRightArrow.svg';
 import bookDoctor from './physicalDashboard/bookDoctor.svg';
-import chevronLeft from './physicalDashboard/chevronLeft.svg';
-import chevronRight from './physicalDashboard/chevronRight.svg';
 import dermat from './physicalDashboard/dermat.svg';
 import doctorBg from './physicalDashboard/doctorBg.svg';
 import doctorFg from './physicalDashboard/doctorFg.svg';
@@ -81,15 +79,40 @@ import mindspace5 from './mentalDashboard/mindspace5.svg';
 import mindspace6 from './mentalDashboard/mindspace6.svg';
 import nothingPhone from './mentalDashboard/nothingPhone.svg';
 
+import symptom1 from './assessment/symptom1.svg';
+import symptom2 from './assessment/symptom2.svg';
+import symptom3 from './assessment/symptom3.svg';
+import symptom4 from './assessment/symptom4.svg';
+
+import aiIcon from './utils/aiIcon.svg'
+import arogoCard from './utils/arogoCard.svg'
+import brain from './utils/brain.svg'
+import copySimple from './utils/copySimple.svg'
+import chevronDown from './utils/chevronDown.svg';
+import chevronLeft from './utils/chevronLeft.svg';
+import chevronRight from './utils/chevronRight.svg';
+import chevronUp from './utils/chevronUp.svg';
+import ellipsis from './utils/ellipsis.svg'
+import folder from './utils/folder.svg'
+import linkShareIcon from './utils/linkShareIcon.svg'
+import mailShareIcon from './utils/mailShareIcon.svg'
+import medicine from './utils/medicine.svg'
+import messageShareIcon from './utils/messageShareIcon.svg'
+import shareIcon from './utils/shareIcon.svg'
+import sharePersonIcon from './utils/sharePersonIcon.svg'
+import signature from './utils/signature.svg'
+import syringe from './utils/syringe.svg'
+import telegramShareIcon from './utils/telegramShareIcon.svg'
+import upload from './utils/upload.svg'
+import videoRecorder from './utils/videoRecorder.svg'
+import whatsappShareIcon from './utils/whatsappShareIcon.svg'
 
 
 export {
-    addressIcon, bandaid, bell, bellz, bin, bird, blackPlus, bluedot, bluePlus,
-    blueRightArrow, bookDoctor, chevronLeft, chevronRight, dermat, doctor1,
-    doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, eyedoc, file,
-    facebook, flask, gynaec, heart, icon1, icon2, icon3, icon4, icon5, icon6, iconBg,
-    instagram, landingHeroBg, linkedin, locationPin, locationMap, lock, logo, mentalDoctorGroup, pencil, plus, rightArrow,
-    rightArrow2, search, stethoscope, target, twitter, upcomingDoctor, upi, user, vcDoctor, videoPlayer, youtube,
-    authBg, donateHeart, googleAuth, greenTick, macbook, redCross,mentalDashboardVector,expert1,expert2,expert3,expert4,expert5,expert6,
-    mindspace1,mindspace2,mindspace3,mindspace4,mindspace5,mindspace6,nothingPhone
+    addressIcon, bandaid, bell, bellz, bin, bird, blackPlus, bluedot, bluePlus, blueRightArrow, bookDoctor, dermat, doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, eyedoc, file, facebook, flask, gynaec, heart, icon1, icon2, icon3, icon4, icon5, icon6, iconBg, instagram, landingHeroBg, linkedin, locationPin, locationMap, lock, mentalDoctorGroup, pencil, plus, rightArrow, rightArrow2, search, stethoscope, target, twitter, upcomingDoctor, upi, user, vcDoctor, videoPlayer, youtube,
+    authBg, donateHeart, googleAuth, greenTick, macbook, redCross,
+    logo,
+    mentalDashboardVector, expert1, expert2, expert3, expert4, expert5, expert6, mindspace1, mindspace2, mindspace3, mindspace4, mindspace5, mindspace6, nothingPhone,
+    symptom1, symptom2, symptom3, symptom4,
+    aiIcon, arogoCard, brain, copySimple, chevronDown, chevronLeft, chevronRight, chevronUp, ellipsis, folder, linkShareIcon, mailShareIcon, medicine, messageShareIcon, shareIcon, sharePersonIcon, signature, syringe, telegramShareIcon,upload, videoRecorder, whatsappShareIcon,
 }

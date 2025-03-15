@@ -32,7 +32,7 @@ function DoctorCard({ img, name, clinic, experience, specialization, rate }: Doc
                         <span>Starts @</span>
                         <span className="font-semibold">{rate}</span>
                     </div>
-                    <button className="text-xl font-medium border border-solid cursor-pointer border-[#2e2e2e] h-[49px] rounded-[35px] w-[183px] max-sm:w-full">
+                    <button className="text-xl btn btn-light h-[49px] rounded-[35px] w-[183px] max-sm:w-full">
                         View more
                     </button>
                     <button className="text-xl btn btn-primary h-[49px] rounded-[35px] w-[183px] max-sm:w-full">

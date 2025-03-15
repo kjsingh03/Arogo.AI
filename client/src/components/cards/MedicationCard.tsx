@@ -34,7 +34,7 @@ export default function MedicationCard({ name, times, timeSlot, handleClick }: M
         <div className="w-[48.87px] h-[48.87px] p-[7.6px_6.5px_6.5px_7.6px] rounded-full bg-[#FF9D15] cursor-pointer">
           <img src={bellz} className='size-full object-cover' alt="Notification reminder" />
         </div>
-        <button onClick={handleClick} className='p-[16.292px_15.814px_14.582px_15.206px] text-[19.55px] btn btn-primary'>View more</button>
+        <button onClick={handleClick} className='max-w-35 p-[16px_15px_14px_15px] text-[19.55px] btn btn-primary'>View more</button>
       </div>
     </div>
   )

@@ -49,6 +49,10 @@ export default function MentalHealthDashboard() {
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <div className='flex flex-col gap-18 relative pt-9'>
       <main className="w-full flex flex-col gap-7 py-4">
@@ -133,12 +137,12 @@ export default function MentalHealthDashboard() {
           <p className='w-full max-w-[1200px] text-center flex flex-col items-center text-[52px] font-bold leading-[64.16px] tracking-[-2px] '>Designed by experts, delivered with care</p>
           <p className='w-full max-w-[940px] text-center flex flex-col items-center text-[20px] leading-[30px] '>From guided meditations to one-on-one coaching, our team of clinical experts and trained coaches work together to bring you science-backed care.</p>
         </div>
-        <button className='btn btn-primary p-[21.486px_50.475px_20.68px_48.483px] rounded-[32.1px] text-[20px] font-bold leading-[21.6px] tracking-[-0.541px] '>Talk</button>
+        <button className='max-w-[142px] btn btn-primary p-[21.486px_50.475px_20.68px_48.483px] rounded-[32.1px] text-[20px] font-bold leading-[21.6px] tracking-[-0.541px] '>Talk</button>
         <div className="w-full flex gap-6 overflow-x-auto no-scrollbar">
           {
             experts.map((data, idx) => (
-              <div className="">
-                <div key={'expert' + idx} className="w-[318px] h-[436px] flex flex-col justify-end items-center gap-3 relative ">
+              <div key={'expert' + idx} className="">
+                <div className="w-[318px] h-[436px] flex flex-col justify-end items-center gap-3 relative ">
                   <img src={data.img} className='absolute top-0 left-0 size-full object-cover' alt="" />
                   <div className="h-[92px] flex flex-col items-center gap-3 text-center z-10">
                     <p className='text-[28.8px] font-bold underline leading-[38.5px] tracking-[-0.962px] text-white '>{data?.name}</p>
@@ -154,7 +158,7 @@ export default function MentalHealthDashboard() {
       <div className="w-full max-w-[1480px] mx-auto flex flex-col items-center gap-15.5 py-9 max-2xl:px-8">
         <div className="flex flex-col items-center gap-2 text-center">
           <p className='w-full max-w-[640px] text-[52px] font-bold leading-[64.16px] tracking-[-2px] '>MindSpace</p>
-          <p className='w-full max-w-[657px] px-29 text-[20px] leading-[30px] '>We <span className='text-accent'>Understand</span> Your Needs Because… We Have been There</p>
+          <p className='w-full max-w-[657px] px-32 text-[20px] leading-[30px] '>We <span className='text-accent'>Understand</span> Your Needs Because… We Have been There</p>
         </div>
         <div className="grid max-xl:grid-cols-1 grid-cols-2 gap-10">
           {

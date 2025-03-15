@@ -9,18 +9,22 @@ export default function Navbar() {
 
   return (
     <nav className='w-full h-23.5 fixed mx-auto px-7.5 pt-[15px flex gap-10 items-center justify-end bg-white z-[100]'>
-      <div className="w-full flex justify-between items-center p-[17px_19px] ">
+      <div className="w-full flex justify-between items-center p-[17px_20px] ">
 
-        <Link to="/">
-          <div className="w-[158.8px] flex gap-4 items-center ">
-            <div className="w-11 h-11 overflow-hidden">
-              <img src={logo} className='size-full object-cover' alt="" />
-            </div>
-            <div className="w-[99px] font-semibold text-[22.89px">
-              <p>Arogo AI</p>
-            </div>
-          </div>
-        </Link>
+        {
+          pathname.split("/")[1] === "service" ?
+            <div className=""></div> :
+            <Link to="/">
+              <div className="w-[158.8px] flex gap-4 items-center ">
+                <div className="w-11 h-11 overflow-hidden">
+                  <img src={logo} className='size-full object-cover' alt="" />
+                </div>
+                <div className="w-[99px] font-semibold text-[22.89px">
+                  <p>Arogo AI</p>
+                </div>
+              </div>
+            </Link>
+        }
 
         <div className="flex justify-center gap-9">
           <ul className="hidden xl:flex justify-end items-center gap-9">
@@ -33,8 +37,11 @@ export default function Navbar() {
             <li>
               <Link className={`nav-item ${activeLink('mental') ? 'active' : ''}`} to="/mental">Mental health</Link>
             </li>
-            <li>
+            {/* <li>
               <Link className={`nav-item ${activeLink('appointments') ? 'active' : ''}`} to="/appointments">Appointments</Link>
+            </li> */}
+            <li>
+              <Link className={`nav-item ${activeLink('assessment') ? 'active' : ''}`} to="/assessment">Assessment</Link>
             </li>
           </ul>
           <div className="flex gap-5 items-center ">

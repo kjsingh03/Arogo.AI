@@ -72,7 +72,7 @@ export default function AppointmentsHero() {
         <div className="flex flex-col gap-6">
           <div className='flex items-center justify-between '>
             <p className='text-[34.755px] font-semibold leading-[32.273px] '>Medication Reminders</p>
-            <button className='btn btn-primary p-[9.773px_19.609px_9.756px_21.722px]'>Add new</button>
+            <button className='btn btn-primary max-w-[218px] p-[9.773px_19.609px_9.756px_21.722px]'>Add new</button>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6.25 place-items-center">
@@ -82,7 +82,7 @@ export default function AppointmentsHero() {
               ))
             }
             <div className='w-full h-69.5 flex items-center justify-center rounded-[15.2px] bg-[#fafafa] shadow-[0px_4.344px_32.257px_0px_rgba(0,0,0,0.05)] ' >
-              <div className="group w-[155.31px] btn btn-secondary p-[6.517px_18.437px_6.497px_19.55px] rounded-[26.1px] flex items-center gap-[5.4px]">
+              <div className="group max-w-[155.31px] btn btn-secondary p-[6.517px_18.437px_6.497px_19.55px] rounded-[26.1px] flex items-center gap-[5.4px]">
                 <svg viewBox="0 0 13 13" fill="none" className="w-[23.89px] h-[21.72px] object-contain p-1 fill-accent group-hover:fill-white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.2291 7.49712H6.90068V12.8733H5.34757V7.49712H0.0430931V6.06348H5.34757V0.687319H6.90068V6.06348H12.2291V7.49712Z" fill="currentColor" />
                 </svg>

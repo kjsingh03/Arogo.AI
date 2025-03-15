@@ -109,7 +109,7 @@ export default function MedicationReminderModal({ closeModal }: { closeModal: ()
 
 
                 <div className="w-full flex gap-4.75 items-center justify-end mt-5 max-sm:flex-col max-sm:items-center">
-                    <button onClick={closeModal} className="px-7 py-3.5 text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px]  btn btn-primary">
+                    <button onClick={closeModal} className="max-w-45 p-[14px_8px_14.03px_8px] text-xl rounded-[25.2px] leading-[22.68px] tracking-[-0.567px]  btn btn-primary">
                         Back to home
                     </button>
                     <div className="w-11.25 h-11.25 relative bg-[#FF9D15] p-[7px_6px_6px_7px] rounded-full overflow-hidden ">

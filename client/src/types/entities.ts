@@ -44,3 +44,18 @@ export interface MedicationType {
     timeSlot?: { time: string; status: string }[];
     documents?: string[];
 }
+
+export interface MentalRecordType {
+    id: string;
+    timestamp: number;
+    type: string;
+    prescriptionId: number;
+    hospital: string;
+    doctor: string;
+    doctorId: number;
+    testName: string;
+    tag: string;
+    speciality: string;
+    state: "mental" | "physical";
+    diagnosis: string;
+}

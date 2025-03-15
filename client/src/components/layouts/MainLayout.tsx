@@ -6,10 +6,10 @@ export default function MainLayout() {
   return (
     <>
       <Navbar />
-      <div className="pt-18 2xl:pt-23.5 min-h-screen">
+      <div className="pt-18 2xl:pt-23.5 min-h-screen flex flex-col justify-between">
         <Outlet />
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

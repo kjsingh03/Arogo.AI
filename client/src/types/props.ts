@@ -55,11 +55,14 @@ export interface CustomInputProps {
     classes?: string;
     label?: string;
     type?: string;
-    value: string;
+    value: string | number;
     placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     error?: string;
     success?: string;
     rest?: any;
-    errLabel?: boolean
+    errLabel?: boolean;
+    markAsRequired?: boolean;
+    pencilEnabled?: boolean;
+    style?: {[key:string]:string};
 }

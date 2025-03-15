@@ -1,4 +1,4 @@
-import { authRequestOTP, authVerifyOTP,authRegisterUser,authVerifyLoginOTP,authLoginUser } from "./auth";
+import { authRequestOTP, authVerifyOTP,authRegisterUser,authVerifyLoginOTP,authLoginUser } from "./authServices";
 
 
 export {
