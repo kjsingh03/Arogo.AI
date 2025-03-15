@@ -70,7 +70,7 @@ export default function AddHealthVaultModal({ closeModal }: { closeModal: () => 
             onDrop={handleDrop}
           >
             <div className="w-15 h-15">
-              <img src={upload} alt="" />
+              <img src={upload} className="w-full h-full" alt="" />
             </div>
             <input type="file" id="fileUpload" hidden onChange={handleFileSelect} />
             <label htmlFor="fileUpload" className="w-full flex flex-col gap-3.5 items-center text-lg">
