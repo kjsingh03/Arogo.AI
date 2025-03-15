@@ -43,7 +43,7 @@ export default function HealthVaultCard({ timestamp, type, prescriptionId, hospi
 
       <div className="w-[10%] flex flex-col gap-3 items-center text-center">
         <div className="w-full border border-accent text-accent px-6 py-1.25 rounded-[45px]">{type}</div>
-        <p className="text-xl leading-[15.815px]">{prescriptionId}</p>
+        <p className="text-xl leading-[15.815px]">ID : {prescriptionId}</p>
       </div>
 
       <p className="w-[15%] text-xl font-semibold leading-[25px] line-clamp-1">{hospital}</p>

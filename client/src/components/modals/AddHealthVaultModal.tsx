@@ -1,5 +1,4 @@
 import { ChangeEvent, useMemo, useState } from "react";
-import { upload } from "../../assets";
 import { HealthVaultFormData } from "../../types";
 import Input from "../inputs/Input";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,7 +69,20 @@ export default function AddHealthVaultModal({ closeModal }: { closeModal: () => 
             onDrop={handleDrop}
           >
             <div className="w-15 h-15">
-              <img src={upload} className="w-full h-full" alt="" />
+              <svg className="w-full h-full" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Upload" clipPath="url(#clip0_1616_22561)">
+                  <path id="Vector" d="M41.25 30H52.5C52.9973 30 53.4742 30.1975 53.8258 30.5492C54.1775 30.9008 54.375 31.3777 54.375 31.875V46.875C54.375 47.3723 54.1775 47.8492 53.8258 48.2008C53.4742 48.5525 52.9973 48.75 52.5 48.75H7.5C7.00272 48.75 6.52581 48.5525 6.17417 48.2008C5.82254 47.8492 5.625 47.3723 5.625 46.875V31.875C5.625 31.3777 5.82254 30.9008 6.17417 30.5492C6.52581 30.1975 7.00272 30 7.5 30H18.75" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                  <path id="Vector_2" d="M30 30V5.625" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                  <path id="Vector_3" d="M18.75 16.875L30 5.625L41.25 16.875" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                  <path id="Vector_4" d="M44.0625 41.7188C45.3569 41.7188 46.4062 40.6694 46.4062 39.375C46.4062 38.0806 45.3569 37.0312 44.0625 37.0312C42.7681 37.0312 41.7188 38.0806 41.7188 39.375C41.7188 40.6694 42.7681 41.7188 44.0625 41.7188Z" fill="#23B2FF" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1616_22561">
+                    <rect width="60" height="60" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+
             </div>
             <input type="file" id="fileUpload" hidden onChange={handleFileSelect} />
             <label htmlFor="fileUpload" className="w-full flex flex-col gap-3.5 items-center text-lg">
