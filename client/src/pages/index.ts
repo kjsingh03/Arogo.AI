@@ -11,6 +11,8 @@ import MentalHealthServicePage from "./MentalHealthServicePage";
 import ConsultOnlineServicePage from "./ConsultOnline";
 import MedicineAlertServicePage from "./MedicineAlert";
 import NotFound from "./NotFound";
+import DoctorList from "./DoctorList";
+import BookAppointment from "./BookAppointment";
 
 export {
     Home,
@@ -26,4 +28,6 @@ export {
     ConsultOnlineServicePage,
     MedicineAlertServicePage,
     NotFound,
+    DoctorList,
+    BookAppointment,
 }

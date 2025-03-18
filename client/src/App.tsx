@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { ArogoCardServicePage, Assessment, BookTestServicePage, ConsultOnlineServicePage, HealthVaultServicePage, Home, Login, MedicineAlertServicePage, MentalHealthDashboard, MentalHealthServicePage, NotFound, PhysicalHealthDashboard, Signup } from "./pages";
+import { ArogoCardServicePage, Assessment, BookAppointment, BookTestServicePage, ConsultOnlineServicePage, HealthVaultServicePage, Home, Login, MedicineAlertServicePage, MentalHealthDashboard, MentalHealthServicePage, NotFound, PhysicalHealthDashboard, DoctorList, Signup } from "./pages";
 import { AuthLayout, MainLayout, ServiceLayout } from "./components";
 
 export default function App() {
@@ -12,6 +12,8 @@ export default function App() {
         <Route path="/messages" element={<Home />} />
         <Route path="/appointments" element={<Home />} />
         <Route path="/assessment" element={<Assessment />} />
+        <Route path="/book-appointment" element={<BookAppointment />} />
+        <Route path="/doctor-list" element={<DoctorList />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
 

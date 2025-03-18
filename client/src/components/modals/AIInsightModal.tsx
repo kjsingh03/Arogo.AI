@@ -7,7 +7,7 @@ export default function AIInsightModal({ closeModal, handleShare }: { closeModal
 
     return (
         <div onClick={closeModal} className="w-screen h-screen bg-[rgba(107,107,107,0.50)] fixed top-0 left-0 z-[1000] flex justify-center items-center ">
-            <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[1034px] h-[1089px] max-2xl:h-[95vh] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-17.5 py-9.5 px-12.5 rounded-[27.1px] max-sm:p-2.5 ">
+            <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[1034px] h-[95vh] max-2xl:h-[95vh] overflow-y-auto thin-scrollbar bg-[#fafafa] flex flex-col items-center gap-17.5 py-9.5 px-12.5 rounded-[27.1px] max-sm:p-2.5 ">
                 <div className="w-full relative flex justify-center">
                     <p className="text-[32px] font-semibold leading-[15.8px] ">AI Insights</p>
                     <div className="absolute -top-5 right-0 w-14.5 h-14.5">

@@ -30,12 +30,12 @@ export default function PhysicalDashboardMainHero() {
               </div>
               <input type="text" className='w-[100%] 2xl:w-[218px] h-[23px] bg-transparent 2xl:text-xl leading-[23px] tracking-[0.4px] font-light outline-none border-none' placeholder='Block a sector A2, No' />
             </div>
-            <div className="w-10 h-10 2xl:w-16.25 2xl:h-16.25 hover:text-accent text-white btn btn-primary p-2 2xl:px-4 2xl:py-4.25 rounded-full">
+            <Link to="/doctor-list" className="w-10 h-10 2xl:w-16.25 2xl:h-16.25 hover:text-accent text-white btn btn-primary p-2 2xl:px-4 2xl:py-4.25 rounded-full">
               <svg className='size-full object-cover' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 24C19.5228 24 24 19.5228 24 14C24 8.47715 19.5228 4 14 4C8.47715 4 4 8.47715 4 14C4 19.5228 8.47715 24 14 24Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21.0703 21.0703L27.9991 27.9991" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </div>
+            </Link>
           </div>
         </div>
 
