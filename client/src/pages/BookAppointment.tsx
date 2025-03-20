@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEvent, useEffect, useMemo, useState } from "react";
-import { chevronDown, expert1, upload, verifiedReview } from "../assets";
+import { chevronDown, expert1, verifiedReview } from "../assets";
 import { useSearchParams } from "react-router-dom";
 import FAQItem from "../components/faq/FAQItem";
 import { bookAppointmentFormData } from "../types/formData";

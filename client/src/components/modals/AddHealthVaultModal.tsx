@@ -4,7 +4,6 @@ import Input from "../inputs/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { setHealthVaultRecords } from "../../store";
-import { upload } from "../../assets";
 
 export default function AddHealthVaultModal({ closeModal }: { closeModal: () => void }) {
   const { healthVaultRecords } = useSelector((state: RootState) => state.data)
