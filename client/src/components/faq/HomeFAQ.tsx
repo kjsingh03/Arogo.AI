@@ -58,7 +58,7 @@ export default function HomeFAQ() {
             </h2>
 
             <div className="flex flex-col gap-1">
-                {faqData.map((faq, index) => (
+                {faqData?.map((faq, index) => (
                     <FAQItem
                         key={'faq'+index}
                         question={faq.question}

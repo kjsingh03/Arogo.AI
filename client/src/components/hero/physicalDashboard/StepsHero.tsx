@@ -35,7 +35,7 @@ export default function StepsHero() {
                 </p>
                 <div className="flex gap-5 justify-between max-md:flex-col max-md:gap-10 max-md:items-center">
                     {
-                        steps.map((step, index) => (
+                        steps?.map((step, index) => (
                             <StepItem key={index} {...step} />
                         ))
                     }

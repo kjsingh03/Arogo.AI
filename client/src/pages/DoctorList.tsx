@@ -94,7 +94,7 @@ export default function DoctorList() {
         </div>
         <div className="w-full flex flex-col gap-3">
           {
-            doctors.map((data,idx)=>(
+            doctors?.map((data,idx)=>(
               <div className="" key={'nearbyDoctor'+idx}>
                 <NearbyDoctorCard {...data} />
               </div>

@@ -34,7 +34,7 @@ export default function ConsultAgainHero() {
                         </div>
 
                         <div ref={scrollContainerRef} className="flex gap-10 overflow-x-auto no-scrollbar">
-                            {consultAgainDoctorList.map((data: DoctorCardProps, idx) => (
+                            {consultAgainDoctorList?.map((data: DoctorCardProps, idx) => (
                                 <div key={'consultDoc' + idx} className="">
                                     <DoctorCard {...data} />
                                 </div>

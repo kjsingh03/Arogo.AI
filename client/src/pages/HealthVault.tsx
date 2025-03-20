@@ -158,7 +158,7 @@ export default function HealthVaultServicePage() {
                 </div>
                 {recentExpanded && (
                   <div className="w-[1620px] flex flex-col gap-3.75">
-                    {recentRecords.map((record) => (
+                    {recentRecords?.map((record) => (
                       <HealthVaultCard key={record.id} {...record} showDeleteModal={() => { setShowDeleteModal(true); setDeleteId(record.id) }} handleViewPrescription={() => handleViewPrescription(record.id)} handleAIInsight={() => handleAIInsight(record.id)} />
                     ))}
                   </div>
@@ -179,7 +179,7 @@ export default function HealthVaultServicePage() {
                 </div>
                 {pastMonthExpanded &&
                   <div className="w-[1620px] flex flex-col gap-3.75">
-                    {pastMonthRecords.map((record) => (
+                    {pastMonthRecords?.map((record) => (
                       <HealthVaultCard key={record.id} {...record} showDeleteModal={() => { setShowDeleteModal(true); setDeleteId(record.id) }} handleViewPrescription={() => handleViewPrescription(record.id)} handleAIInsight={() => handleAIInsight(record.id)} />
                     ))}
                   </div>

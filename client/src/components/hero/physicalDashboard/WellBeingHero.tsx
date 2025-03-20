@@ -27,7 +27,7 @@ export default function WellBeingHero() {
                 At Arogo AI, we understand that mental health is a journey best taken together. Our digital group sessions connect you with like-minded individuals facing similar challenges. Guided by experienced psychologists, these sessions provide fresh perspectives on your situation, helping you manage current struggles and build resilience for the future.
             </p>
             <div className="flex py-5 gap-5 justify-between items-start max-w-full text-center w-[861px] max-md:mt-10">
-                {statistics.map((stat, index) => (
+                {statistics?.map((stat, index) => (
                     <StatisticItem key={index} {...stat} />
                 ))}
             </div>
@@ -66,7 +66,7 @@ export default function WellBeingHero() {
                 </button>
             </div>
             <div className="flex flex-wrap gap-5 justify-between max-w-full text-[#545457] w-[880px]">
-                {features.map((feature, index) => (
+                {features?.map((feature, index) => (
                     <FeatureItem key={index} {...feature} />
                 ))}
             </div>

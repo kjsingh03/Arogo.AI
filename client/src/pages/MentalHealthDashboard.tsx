@@ -140,7 +140,7 @@ export default function MentalHealthDashboard() {
         <button className='max-w-[142px] btn btn-primary p-[21.486px_50.475px_20.68px_48.483px] rounded-[32.1px] text-[20px] font-bold leading-[21.6px] tracking-[-0.541px] '>Talk</button>
         <div className="w-full flex gap-6 overflow-x-auto no-scrollbar">
           {
-            experts.map((data, idx) => (
+            experts?.map((data, idx) => (
               <div key={'expert' + idx} className="">
                 <div className="w-[318px] h-[436px] flex flex-col justify-end items-center gap-3 relative ">
                   <img src={data.img} className='absolute top-0 left-0 size-full object-cover' alt="" />
@@ -162,7 +162,7 @@ export default function MentalHealthDashboard() {
         </div>
         <div className="grid max-xl:grid-cols-1 grid-cols-2 gap-10">
           {
-            mindspaces.map((data, idx) => (
+            mindspaces?.map((data, idx) => (
               <div key={'mindspace' + idx} className="w-full max-w-[720px] max-2xl:h-55 h-[275px] flex items-center gap-7 ">
                 <div className="w-[290px] h-full overflow-hidden rounded-[20.8px]  ">
                   <img src={data?.img} className='size-full object-cover' alt="mindspace image" />
