@@ -70,7 +70,20 @@ export default function AddHealthVaultModal({ closeModal }: { closeModal: () => 
             onDrop={handleDrop}
           >
             <div className="w-15 h-15">
-              <img src={upload} className='size-full object-cover' alt="" />
+              {/* <img src={upload} alt="" /> */}
+              <svg className='size-full object-cover' xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
+                <g clip-path="url(#clip0_2168_1403)">
+                  <path d="M41.75 30.5078H53C53.4973 30.5078 53.9742 30.7054 54.3258 31.057C54.6775 31.4086 54.875 31.8855 54.875 32.3828V47.3828C54.875 47.8801 54.6775 48.357 54.3258 48.7086C53.9742 49.0603 53.4973 49.2578 53 49.2578H8C7.50272 49.2578 7.02581 49.0603 6.67417 48.7086C6.32254 48.357 6.125 47.8801 6.125 47.3828V32.3828C6.125 31.8855 6.32254 31.4086 6.67417 31.057C7.02581 30.7054 7.50272 30.5078 8 30.5078H19.25" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M30.5 30.5078V6.13281" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M19.25 17.3828L30.5 6.13281L41.75 17.3828" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M44.5625 42.2266C45.8569 42.2266 46.9062 41.1772 46.9062 39.8828C46.9062 38.5884 45.8569 37.5391 44.5625 37.5391C43.2681 37.5391 42.2188 38.5884 42.2188 39.8828C42.2188 41.1772 43.2681 42.2266 44.5625 42.2266Z" fill="#23B2FF" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_2168_1403">
+                    <rect width="60" height="60" fill="white" transform="translate(0.5 0.507812)" />
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
             <input type="file" id="fileUpload" hidden onChange={handleFileSelect} />
             <label htmlFor="fileUpload" className="w-full flex flex-col gap-3.5 items-center text-lg">
