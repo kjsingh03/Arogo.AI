@@ -34,3 +34,11 @@ export interface HealthVaultFormData {
     state: "mental" | "physical";
     timestamp: number;
 }
+
+export interface bookAppointmentFormData {
+    symptoms: string;
+    isNew: "true" | "false";
+    consultationMode: 'online' | 'in-person';
+    files: FileList | string[] | null;
+    date: Date;
+}

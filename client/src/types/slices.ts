@@ -1,4 +1,4 @@
-import { AppointmentType, MedicationType, MentalRecordType, UserType } from "./entities";
+import { AppointmentType, DoctorType, MedicationType, MentalRecordType, UserType } from "./entities";
 import { DoctorCardProps } from "./props";
 
 export interface UISliceInterface {
@@ -19,4 +19,8 @@ export interface dataSliceInterface {
     medicationList: MedicationType[];
     consultAgainDoctorList: DoctorCardProps[];
     healthVaultRecords: MentalRecordType[];
+}
+
+export interface NearbyDoctorSliceInterface {
+    doctors: DoctorType[];
 }

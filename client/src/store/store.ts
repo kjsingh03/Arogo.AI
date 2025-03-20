@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/UserSlice';
 import uIReducer from './slices/UiSlice';
 import dataReducer from './slices/DataSlices';
+import nearbyDoctorReducer from './slices/NearbyDoctorSlice';
 
 const store = configureStore({
     reducer: {
         user: userReducer,
         ui: uIReducer,
-        data: dataReducer
+        data: dataReducer,
+        nearbyDoctors: nearbyDoctorReducer
     },
 });
 

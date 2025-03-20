@@ -1,7 +1,31 @@
-import { chevronDown, locationPin } from '../assets'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { chevronDown } from '../assets'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../store/store'
+import { setNearbyDoctor } from '../store'
+import { NearbyDoctorCard } from '../components'
+import { nearbyDoctorsFetchService } from '../services'
 
 export default function DoctorList() {
+
+  const { doctors } = useSelector((state: RootState) => state.nearbyDoctors)
+  const dispatch = useDispatch();
+
+  console.log(doctors)
+
+  const fetchDoctors = async () => {
+    try {
+      const res = await nearbyDoctorsFetchService()
+      dispatch(setNearbyDoctor(res))
+    } catch (err: any) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchDoctors()
+  }, [])
+
   return (
     <div className='w-full mx-auto flex flex-col items-center gap-7.5 py-15 px-35 max-2xl:px-8 '>
       <div className="lg:w-[70%] 2xl:w-[740px] h-12 2xl:h-[73px] flex justify-end items-center gap-3.5 border rounded-[61px] border-[#979797] p-1 2xl:p-0.5 ">
@@ -68,7 +92,15 @@ export default function DoctorList() {
           <p className='text-lg leading-[23px] tracking-[0.36px]'>Book appointments with minimum wait-time & verified doctor details</p>
           <div className="w-full h-0.25 bg-[#d9d9d9]"></div>
         </div>
-        <div className="grid grid-cols-2"></div>
+        <div className="w-full flex flex-col gap-3">
+          {
+            doctors.map((data,idx)=>(
+              <div className="" key={'nearbyDoctor'+idx}>
+                <NearbyDoctorCard {...data} />
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   )

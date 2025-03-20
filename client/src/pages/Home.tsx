@@ -7,7 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/physical");
+      navigate("/doctor-list");
     }, 1000);
   },[])
 

@@ -105,6 +105,8 @@ import syringe from './utils/syringe.svg'
 import telegramShareIcon from './utils/telegramShareIcon.svg'
 import videoRecorder from './utils/videoRecorder.svg'
 import whatsappShareIcon from './utils/whatsappShareIcon.svg'
+import verifiedReview from './utils/verifiedReview.svg'
+import upload from './utils/upload.svg'
 
 
 export {
@@ -113,5 +115,5 @@ export {
     logo,
     mentalDashboardVector, expert1, expert2, expert3, expert4, expert5, expert6, mindspace1, mindspace2, mindspace3, mindspace4, mindspace5, mindspace6, nothingPhone,
     symptom1, symptom2, symptom3, symptom4,
-    aiIcon, arogoCard, brain, copySimple, chevronDown, chevronLeft, chevronRight, chevronUp, ellipsis, folder, linkShareIcon, mailShareIcon, medicine, messageShareIcon, shareIcon, sharePersonIcon, signature, syringe, telegramShareIcon, videoRecorder, whatsappShareIcon,
+    aiIcon, arogoCard, brain, copySimple, chevronDown, chevronLeft, chevronRight, chevronUp, ellipsis, folder, linkShareIcon, mailShareIcon, medicine, messageShareIcon, shareIcon, sharePersonIcon, signature, syringe, telegramShareIcon, videoRecorder, whatsappShareIcon,verifiedReview, upload
 }

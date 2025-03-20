@@ -13,7 +13,7 @@ export interface UserType {
     defaultHomeScreen?: string;
 }
 
-export interface DoctorType {
+export interface SampleDoctorType {
     img: string;
     name: string;
     speciality: string;
@@ -22,7 +22,7 @@ export interface DoctorType {
 }
 
 export interface AppointmentType {
-    doctor: DoctorType;
+    doctor: SampleDoctorType;
     times: string;
     date: string;
     mode: string;
@@ -35,7 +35,7 @@ export interface AppointmentType {
 }
 
 export interface MedicationType {
-    doctor: DoctorType;
+    doctor: SampleDoctorType;
     from: number;
     to: number;
     id: string;
@@ -58,4 +58,30 @@ export interface MentalRecordType {
     speciality: string;
     state: "mental" | "physical";
     diagnosis: string;
+}
+
+export interface DoctorType {
+    id: number;
+    userId: number;
+    displayName: string;
+    profilePicture: string;
+    specialty: string;
+    expertiseAreas: string[];
+    clinicName: string;
+    education: string;
+    credentials: string;
+    yearsOfExperience: number;
+    medicalRegistrationNumber: string;
+    languagesSpoken: string[];
+    providesOnlineConsultation: boolean;
+    bio: string;
+    createdAt: Date|string;
+    updatedAt: Date|string;
+    doctor: {
+        email: string;
+        isVerified: boolean;
+    },
+    email: string;
+    isVerified: boolean;
+    score: number;
 }

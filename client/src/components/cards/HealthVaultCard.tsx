@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { aiIcon, ellipsis } from "../../assets";
 import { MentalRecordType } from "../../types";
 
-export default function HealthVaultCard({ timestamp, type, prescriptionId, hospital, doctor, testName, tag, speciality, showDeleteModal, handleViewPrescription, handleAIInsight }: MentalRecordType & { showDeleteModal: () => void; handleViewPrescription: () => void, handleAIInsight: () => void }) {
+export default function HealthVaultCard({ timestamp, type, prescriptionId, hospital, doctor, testName, tag, speciality, showDeleteModal, handleViewPrescription, handleAIInsight }: MentalRecordType & { showDeleteModal?: () => void; handleViewPrescription?: () => void, handleAIInsight?: () => void }) {
 
   const dateObj = new Date(timestamp);
 
@@ -59,35 +59,40 @@ export default function HealthVaultCard({ timestamp, type, prescriptionId, hospi
         <p className="w-max text-[#FF8630] bg-[rgba(255,134,48,0.20)] border border-[#FF8630] rounded-[45px] px-7.25 py-1.25">{tag}</p>
       </div>
 
-      <div onClick={handleAIInsight} className="cursor-pointer flex flex-col items-center">
-        <div className="w-11.5 h-11.5">
-          <img src={aiIcon} className="size-full object-cover" alt="" />
-        </div>
-        <p className="text-accent text-lg leading-[20px] font-medium">AI Insights</p>
-      </div>
+      {
+        handleViewPrescription && showDeleteModal &&
+        <>
+          <div onClick={handleAIInsight} className="cursor-pointer flex flex-col items-center">
+            <div className="w-11.5 h-11.5">
+              <img src={aiIcon} className="size-full object-cover" alt="" />
+            </div>
+            <p className="text-accent text-lg leading-[20px] font-medium">AI Insights</p>
+          </div>
 
-      {showModal && (
-        <div
-          ref={modalRef}
-          className="w-[190px] h-[106px] flex flex-col items-center text-center justify-center overflow-hidden rounded-2xl absolute top-4 right-20 bg-[#f7f8f8] border border-[rgba(217,217,217,0.60)] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)]"
-        >
-          <p onClick={handleViewPrescription} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
-            View prescription
-          </p>
-          <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
-          <p onClick={showDeleteModal} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
-            Delete
-          </p>
-        </div>
-      )}
+          {showModal && (
+            <div
+              ref={modalRef}
+              className="w-[190px] h-[106px] flex flex-col items-center text-center justify-center overflow-hidden rounded-2xl absolute top-4 right-20 bg-[#f7f8f8] border border-[rgba(217,217,217,0.60)] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)]"
+            >
+              <p onClick={handleViewPrescription} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
+                View prescription
+              </p>
+              <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+              <p onClick={showDeleteModal} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
+                Delete
+              </p>
+            </div>
+          )}
 
-      <button
-        ref={buttonRef}
-        onClick={() => setShowModal(!showModal)}
-        className="w-[43px] h-[43px] flex items-center justify-center cursor-pointer"
-      >
-        <img src={ellipsis} className="size-full object-cover" alt="" />
-      </button>
+          <button
+            ref={buttonRef}
+            onClick={() => setShowModal(!showModal)}
+            className="w-[43px] h-[43px] flex items-center justify-center cursor-pointer"
+          >
+            <img src={ellipsis} className="size-full object-cover" alt="" />
+          </button>
+        </>
+      }
     </article>
   );
 }
