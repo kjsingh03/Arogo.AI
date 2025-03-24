@@ -72,7 +72,7 @@ export default function VaultDocumentInputModal({ closeModal }: VaultDocumentInp
                                 </div>
                             </div>
 
-                            <div className="w-full xl:w-max flex gap-2 items-center px-2.5 py-2 bg-[rgba(217,217,217,0.60)] rounded-[50px] whitespace-nowrap overflow-x-auto">
+                            <div className="w-full xl:w-max flex gap-2 items-center px-2.5 py-2 bg-[#D9D9D999] rounded-[50px] whitespace-nowrap overflow-x-auto">
                                 {["All", "Main", "Uploaded", "Prescription", "Lab Report"].map((option, idx) => (
                                     <button key={"optionFilter" + idx} onClick={() => setActiveFilter(option)} className={`px-9 py-2 rounded-3xl ${activeFilter === option ? "font-medium text-accent bg-stone-50" : "text-gray-700"}`}>
                                         {option}
@@ -105,7 +105,7 @@ export default function VaultDocumentInputModal({ closeModal }: VaultDocumentInp
                         </section>
                     }
 
-                    <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+                    <div className="w-full h-0.25 bg-[#D9D9D999]"></div>
 
                     {
                         pastMonthRecords.length > 0 &&

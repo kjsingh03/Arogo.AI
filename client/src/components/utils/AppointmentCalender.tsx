@@ -5,30 +5,33 @@ interface AppointmentCalendarProps {
     currentDate: Date;
     setCurrentDate: (x: Date) => void;
     selectedDate: Date | null;
-    setSelectedDate: (x: Date) => void;
+    onDateSelect: (date: Date) => void;
+    weekdays?: string[];
+    className?: string;
+    disableMonthNavigation?: boolean;
 }
 
-export default function AppointmentCalendar({ currentDate, setCurrentDate, selectedDate, setSelectedDate, }: AppointmentCalendarProps) {
-
+export default function AppointmentCalendar({
+    currentDate,
+    setCurrentDate,
+    selectedDate,
+    onDateSelect,
+    weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    className = "",
+    disableMonthNavigation = false
+}: AppointmentCalendarProps) {
+    
     const changeMonth = (offset: number) => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + offset, 1));
     };
 
-    const handleDateClick = (day: number) => {
-        setSelectedDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
-    };
-
     const daysInMonth = useMemo(() => {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        return new Date(year, month + 1, 0).getDate();
+        return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     }, [currentDate]);
 
     const firstDayOfMonth = useMemo(() => {
         return new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
     }, [currentDate]);
-
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     const calendarDays = useMemo(() => {
         const days = [];
@@ -40,9 +43,7 @@ export default function AppointmentCalendar({ currentDate, setCurrentDate, selec
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
             const weekday = weekdays[date.getDay()];
-
-            const isSelected =
-                selectedDate &&
+            const isSelected = selectedDate && 
                 selectedDate.getDate() === day &&
                 selectedDate.getMonth() === currentDate.getMonth() &&
                 selectedDate.getFullYear() === currentDate.getFullYear();
@@ -51,8 +52,8 @@ export default function AppointmentCalendar({ currentDate, setCurrentDate, selec
                 <div
                     key={day}
                     className={`w-[97px] h-[104px] flex flex-col items-center justify-center gap-3 py-6.5 px-5.5 text-center rounded-[24px] border 
-                        ${isSelected ? "bg-accent text-white" : "hover:bg-gray-100 border-[rgba(217,217,217,0.60)]"}`}
-                    onClick={() => handleDateClick(day)}
+                        ${isSelected ? "bg-accent text-white" : "hover:bg-gray-100 border-[#D9D9D999]"}`}
+                    onClick={() => onDateSelect(date)}
                 >
                     <p className="text-[26px] font-semibold leading-[20px] tracking-[0.52px]">{day}</p>
                     <p className="text-[23px] font-medium leading-[20px] tracking-[0.454px]">{weekday}</p>
@@ -64,26 +65,28 @@ export default function AppointmentCalendar({ currentDate, setCurrentDate, selec
     }, [currentDate, selectedDate, daysInMonth, firstDayOfMonth]);
 
     return (
-        <div className="w-full max-w-[768px] flex flex-col gap-4">
+        <div className={`w-full max-w-[768px] flex flex-col gap-4 ${className}`}>
             <div className="flex items-center justify-between px-2">
                 <p className="text-[26px] font-semibold leading-[20px] tracking-[0.52px]">
                     Today, {currentDate.toLocaleString("default", { month: "short", day: "numeric" })}
                 </p>
-                <div className="flex items-center gap-2">
-                    <button className="" onClick={() => changeMonth(-1)}>
-                        <img src={chevronLeft} className="w-[15px] h-[17.8px] object-contain" alt="Previous" />
-                    </button>
-                    <p className="text-[23px] leading-[30px] tracking-[0.47px]">{currentDate.toLocaleString("default", { month: "long" })}</p>
-                    <button className="" onClick={() => changeMonth(1)}>
-                        <img src={chevronRight} className="w-[15px] h-[17.8px] object-contain" alt="Next" />
-                    </button>
-                </div>
+                {!disableMonthNavigation && (
+                    <div className="flex items-center gap-2">
+                        <button onClick={() => changeMonth(-1)}>
+                            <img src={chevronLeft} className="w-[15px] h-[17.8px] object-contain" alt="Previous" />
+                        </button>
+                        <p className="text-[23px] leading-[30px] tracking-[0.47px]">
+                            {currentDate.toLocaleString("default", { month: "long" })}
+                        </p>
+                        <button onClick={() => changeMonth(1)}>
+                            <img src={chevronRight} className="w-[15px] h-[17.8px] object-contain" alt="Next" />
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-4">
-                {calendarDays}
-            </div>
+            <div className="grid grid-cols-7 gap-4">{calendarDays}</div>
         </div>
     );
 }

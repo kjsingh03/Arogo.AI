@@ -1,9 +1,9 @@
 import { ChangeEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { chevronDown, expert1, verifiedReview } from "../assets";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import FAQItem from "../components/faq/FAQItem";
 import { bookAppointmentFormData } from "../types/formData";
-import { AppointmentCalender, CustomSelectButton, VaultDocumentInputModal, } from "../components";
+import { AppointmentCalender, ConfirmAppointmentModal, CustomSelectButton, VaultDocumentInputModal, } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { nearbyDoctorsFetchService } from "../services";
@@ -83,9 +83,20 @@ const reviews = [
 ];
 
 export default function BookAppointment() {
+
+  const [openIndex, setopenIndex] = useState<number | null>(null);
+  const [formData, setFormData] = useState<bookAppointmentFormData>({ symptoms: "", isNew: "true", appointmentMode: "in-person", files: null, appointmentDateTime: new Date(), dob: null, firstName: "", lastName: "", gender: "male", phoneNumber: "", visitHour: "" });
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [files, setFiles] = useState<File[] | null>(null);
+  const [error, setError] = useState<string>("");
+  const [showInputVaultModal, setShowInputVaultModal] = useState<boolean>(false);
+  const [showConfirmAppointmentModal, setShowConfirmAppointmentModal] = useState<boolean>(false);
+
   const [pageParams, setPageParams] = useSearchParams();
+
   const { doctors } = useSelector((state: RootState) => state.nearbyDoctors);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchDoctors = async () => {
     try {
@@ -102,19 +113,11 @@ export default function BookAppointment() {
 
   const doctorID = pageParams.get("doctorId");
 
-  const doctor = useMemo(() => {
-    return doctors.find((data) => data.id === eval(doctorID!));
-  }, [doctorID, doctors]);
+  if (!doctorID) navigate("/doctor-list");
 
-  const [openIndex, setopenIndex] = useState<number | null>(null);
-  const [formData, setFormData] = useState<bookAppointmentFormData>({ symptoms: "", isNew: "true", consultationMode: doctor?.providesOnlineConsultation ? "online" : "in-person", files: null, date: new Date(), });
-  const [isNew, setisNew] = useState("true");
-  const [consultationMode, setconsultationMode] = useState(doctor?.providesOnlineConsultation ? "online" : "in-person");
-  const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<string>("");
-  const [openVaultModal, setOpenVaultModal] = useState<boolean>(false);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const doctor = useMemo(() => {
+    return doctors.find((data) => String(data.id) === doctorID);
+  }, [doctorID, doctors]);
 
   const handleFaqOpen = (num: number) => {
     setopenIndex(openIndex === num ? null : num);
@@ -126,13 +129,12 @@ export default function BookAppointment() {
 
   const switchSection = (sec: string) => {
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("section", sec); // Add or update the 'section' query
+    urlParams.set("section", sec);
 
     const newQueryString = urlParams.toString();
 
     setPageParams(newQueryString)
   };
-
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -146,54 +148,69 @@ export default function BookAppointment() {
     } else {
       setFormData({ ...formData, [name]: value });
     }
-    console.log(e.target);
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const uploadedFile = event.dataTransfer.files[0];
+    const uploadedFile = event.dataTransfer.files;
 
     if (uploadedFile) validateFile(uploadedFile);
   };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = event.target.files?.[0];
+    const uploadedFiles = event.target.files;
 
-    if (uploadedFile) validateFile(uploadedFile);
+    if (uploadedFiles) validateFile(uploadedFiles);
   };
 
-  const validateFile = (uploadedFile: File) => {
-    if (uploadedFile.size > 5 * 1024 * 1024) {
-      setError("File size exceeds 5MB limit.");
-      setFile(null);
-    } else {
+  const validateFile = (uploadedFiles: FileList) => {
+    let isValid = true;
+
+    const filesArray = Array.from(uploadedFiles);
+    for (const file of filesArray) {
+      if (file.size > 5 * 1024 * 1024) {
+        isValid = false;
+        setError(`File "${file.name}" exceeds the 5MB limit.`);
+        setFiles(null);
+        return;
+      }
+    }
+
+    // If all files are valid
+    if (isValid) {
       setError("");
-      setFile(uploadedFile);
+      setFiles(filesArray);
     }
   };
 
   const handleVaultModal = (e: MouseEvent) => {
     e.stopPropagation();
-    setOpenVaultModal(true);
+    setShowInputVaultModal(true);
   };
 
-  console.log(formData, consultationMode, isNew, file, selectedDate);
+  console.log(formData, files);
 
   useEffect(() => {
-    if (openVaultModal) {
+    if (showInputVaultModal || showConfirmAppointmentModal) {
       document.body.style.overflow = "hidden";
     }
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [openVaultModal]);
+  }, [showInputVaultModal, showConfirmAppointmentModal]);
 
   return (
     <>
-      {openVaultModal && (
-        <VaultDocumentInputModal closeModal={() => setOpenVaultModal(false)} />
+      {showInputVaultModal && (
+        <VaultDocumentInputModal closeModal={() => setShowInputVaultModal(false)} />
       )}
+
+      {
+        showConfirmAppointmentModal &&
+        <ConfirmAppointmentModal closeModal={() => setShowConfirmAppointmentModal(false)} doctor={doctor} formData={formData} setFormData={setFormData} />
+      }
+
       <div className="w-full mx-auto flex flex-col items-center gap-12 py-10.5 px-35 max-2xl:px-8 ">
         <div className="w-full flex items-center justify-between py-9.5 px-10.75  ">
           <div className="w-full max-w-[815px flex items-center gap-10">
@@ -309,40 +326,16 @@ export default function BookAppointment() {
         <div className="w-full flex gap-12.5">
           <div className="w-full max-w-[629px] flex flex-col gap-10 ">
             <div className="flex gap-12 border-b border-b-transparent">
-              <p
-                onClick={() => switchSection("about")}
-                className={`w-[86px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "about" || !sectionQuery
-                  ? "font-bold border-b-accent"
-                  : "font-medium border-b-transparent"
-                  }`}
-              >
+              <p onClick={() => switchSection("about")} className={`w-[86px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "about" || !sectionQuery ? "font-bold border-b-accent" : "font-medium border-b-transparent"}`}>
                 About
               </p>
-              <p
-                onClick={() => switchSection("location")}
-                className={`w-[89px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "location"
-                  ? "font-bold border-b-accent"
-                  : "font-medium border-b-transparent"
-                  }`}
-              >
+              <p onClick={() => switchSection("location")} className={`w-[89px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "location" ? "font-bold border-b-accent" : "font-medium border-b-transparent"}`}>
                 Location
               </p>
-              <p
-                onClick={() => switchSection("review")}
-                className={`w-[83px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "review"
-                  ? "font-bold border-b-accent"
-                  : "font-medium border-b-transparent"
-                  }`}
-              >
+              <p onClick={() => switchSection("review")} className={`w-[83px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "review" ? "font-bold border-b-accent" : "font-medium border-b-transparent"}`}>
                 Reviews
               </p>
-              <p
-                onClick={() => switchSection("faq")}
-                className={`w-[56px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "faq"
-                  ? "font-bold border-b-accent"
-                  : "font-medium border-b-transparent"
-                  }`}
-              >
+              <p onClick={() => switchSection("faq")} className={`w-[56px] text-center py-2 text-xl leading-[21px] tracking-[0.4px] border-b-2 cursor-pointer ${sectionQuery === "faq" ? "font-bold border-b-accent" : "font-medium border-b-transparent"}`}>
                 FAQ's
               </p>
             </div>
@@ -535,7 +528,7 @@ export default function BookAppointment() {
                 );
               else if (sectionQuery === "faq")
                 return (
-                  <div className="w-full flex flex-col gap-12 py-[94px]">
+                  <div className="w-full flex flex-col gap-12 py-17.25">
                     <p className="text-xl font-semibold leading-[21px] tracking-[0.4px">
                       Frequently asked questions
                     </p>
@@ -598,42 +591,27 @@ export default function BookAppointment() {
                 );
             })()}
           </div>
-          <div className="w-full max-w-[929px] px-6 py-8 flex flex-col items-center gap-28 bg-[#F7F8F8] rounded-[28px] border border-[rgba(217,217,217,0.60)]">
+
+          <div className="w-full max-w-[929px] px-6 py-8 flex flex-col items-center gap-28 bg-[#F7F8F8] rounded-[28px] border border-[#D9D9D999]">
             <div className="w-full flex flex-col gap-14">
               <div className="flex flex-col gap-7">
-                <p className="text-[32px] font-semibold leading-[23px] tracking-[0.64px]">
-                  Book an appointment
-                </p>
-                <p className="text-lg leading-[23px] tracking-[0.36px]">
-                  The office partners with Arogo to schedule appointments
-                </p>
+                <p className="text-[32px] font-semibold leading-[23px] tracking-[0.64px]">Book an appointment</p>
+                <p className="text-lg leading-[23px] tracking-[0.36px]">The office partners with Arogo to schedule appointments</p>
               </div>
               <div className="flex flex-col gap-10">
                 <div className="w-full flex flex-col gap-3">
-                  <label className="text-[22px] font-semibold leading-[23px] tracking-[0.44px]">
-                    Describe your symptoms
-                  </label>
+                  <label className="text-[22px] font-semibold leading-[23px] tracking-[0.44px]">Describe your symptoms</label>
                   <textarea
+                    id="symptoms"
                     name="symptoms"
                     onChange={handleChange}
-                    id="symptoms"
-                    className="w-full h-[132px] bg-white px-6 py-3.5 rounded-[28px] border border-[rgba(217,217,217,0.60)] outline-none"
                     placeholder="Eg. having cold"
+                    className="w-full h-[132px] bg-white px-6 py-3.5 rounded-[28px] border border-[#D9D9D999] outline-none"
                   ></textarea>
                 </div>
                 <div className="w-max h-[82px] flex items-center justify-center p-1 bg-white rounded-[49px] border border-[#d9d9d9]">
-                  <CustomSelectButton
-                    handleClick={() => setisNew("true")}
-                    label="New patient"
-                    value={"true"}
-                    variable={isNew}
-                  />
-                  <CustomSelectButton
-                    handleClick={() => setisNew("false")}
-                    label="Repeating patient"
-                    value={"false"}
-                    variable={isNew}
-                  />
+                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, isNew: "true" }))} label="New patient" isSelected={formData.isNew === "true"} />
+                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, isNew: "false" }))} label="Repeating patient" isSelected={formData.isNew === "false"} />
                 </div>
                 <div className="w-full flex flex-col items-end gap-4">
                   <div
@@ -645,71 +623,36 @@ export default function BookAppointment() {
                   >
                     <div className="w-15 h-15">
                       <svg className='size-full object-cover' xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
-                        <g clip-path="url(#clip0_2168_1403)">
-                          <path d="M41.75 30.5078H53C53.4973 30.5078 53.9742 30.7054 54.3258 31.057C54.6775 31.4086 54.875 31.8855 54.875 32.3828V47.3828C54.875 47.8801 54.6775 48.357 54.3258 48.7086C53.9742 49.0603 53.4973 49.2578 53 49.2578H8C7.50272 49.2578 7.02581 49.0603 6.67417 48.7086C6.32254 48.357 6.125 47.8801 6.125 47.3828V32.3828C6.125 31.8855 6.32254 31.4086 6.67417 31.057C7.02581 30.7054 7.50272 30.5078 8 30.5078H19.25" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
-                          <path d="M30.5 30.5078V6.13281" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
-                          <path d="M19.25 17.3828L30.5 6.13281L41.75 17.3828" stroke="#23B2FF" stroke-width="2.8125" stroke-linecap="round" stroke-linejoin="round" />
-                          <path d="M44.5625 42.2266C45.8569 42.2266 46.9062 41.1772 46.9062 39.8828C46.9062 38.5884 45.8569 37.5391 44.5625 37.5391C43.2681 37.5391 42.2188 38.5884 42.2188 39.8828C42.2188 41.1772 43.2681 42.2266 44.5625 42.2266Z" fill="#23B2FF" />
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_2168_1403">
-                            <rect width="60" height="60" fill="white" transform="translate(0.5 0.507812)" />
-                          </clipPath>
-                        </defs>
+                        <path d="M41.75 30.5078H53C53.4973 30.5078 53.9742 30.7054 54.3258 31.057C54.6775 31.4086 54.875 31.8855 54.875 32.3828V47.3828C54.875 47.8801 54.6775 48.357 54.3258 48.7086C53.9742 49.0603 53.4973 49.2578 53 49.2578H8C7.50272 49.2578 7.02581 49.0603 6.67417 48.7086C6.32254 48.357 6.125 47.8801 6.125 47.3828V32.3828C6.125 31.8855 6.32254 31.4086 6.67417 31.057C7.02581 30.7054 7.50272 30.5078 8 30.5078H19.25" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M30.5 30.5078V6.13281" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M19.25 17.3828L30.5 6.13281L41.75 17.3828" stroke="#23B2FF" strokeWidth="2.8125" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M44.5625 42.2266C45.8569 42.2266 46.9062 41.1772 46.9062 39.8828C46.9062 38.5884 45.8569 37.5391 44.5625 37.5391C43.2681 37.5391 42.2188 38.5884 42.2188 39.8828C42.2188 41.1772 43.2681 42.2266 44.5625 42.2266Z" fill="#23B2FF" />
                       </svg>
                     </div>
-                    <input
-                      type="file"
-                      id="fileUpload"
-                      hidden
-                      onChange={handleFileSelect}
-                    />
+                    <input type="file" id="fileUpload" hidden multiple onChange={handleFileSelect} />
                     <div className="w-full flex flex-col gap-3.5 items-center text-lg">
-                      <p className="leading-[23px] tracking-[0.36px]">
-                        Drag and drop files here to upload
-                      </p>
-                      <p className="font-semibold leading-[23px] tracking-[0.36px]">
-                        OR
-                      </p>
-                      <p
-                        onClick={handleVaultModal}
-                        className="group cursor-pointer leading-[23px] tracking-[0.36px]"
-                      >
-                        Upload from{" "}
-                        <span className="group-hover:underline font-semibold text-accent">
-                          Arogo
-                        </span>{" "}
-                        Health vault
-                      </p>
+                      <p className="leading-[23px] tracking-[0.36px]">  Drag and drop files here to upload</p>
+                      <p className="font-semibold leading-[23px] tracking-[0.36px]">  OR</p>
+                      <p onClick={handleVaultModal} className="group cursor-pointer leading-[23px] tracking-[0.36px]">Upload from{" "}<span className="group-hover:underline font-semibold text-accent">Arogo</span>{" "} Health vault</p>
                     </div>
                   </div>
-                  {file && <p className="text-green-600">{file.name}</p>}
+                  {files && <p className="w-[50%] text-green-600 line-clamp-1">{files.map(file => file.name).join(", ")}</p>}
                   {error && <p className="text-red-500">{error}</p>}
                 </div>
 
                 <div className="w-max h-[82px] flex items-center justify-center p-1 bg-white rounded-[49px] border border-[#d9d9d9]">
-                  <CustomSelectButton
-                    handleClick={() => setconsultationMode("online")}
-                    label="Online"
-                    value="online"
-                    variable={consultationMode}
-                  />
-                  <CustomSelectButton
-                    handleClick={() => setconsultationMode("in-person")}
-                    label="In-person"
-                    value="in-person"
-                    variable={consultationMode}
-                  />
+                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, appointmentMode: "online" }))} label="Online" isSelected={formData.appointmentMode === "online"} />
+                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, appointmentMode: "in-person" }))} label="In-person" isSelected={formData.appointmentMode === "in-person"} />
                 </div>
               </div>
             </div>
             <AppointmentCalender
               currentDate={currentDate}
               setCurrentDate={setCurrentDate}
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
+              selectedDate={formData.appointmentDateTime}
+              onDateSelect={(date) => setFormData(prev => ({ ...prev, appointmentDateTime: date }))}
             />
-            <button className="btn btn-primary">Continue</button>
+            <button onClick={() => setShowConfirmAppointmentModal(true)} className="btn btn-primary">Continue</button>
           </div>
         </div>
       </div>

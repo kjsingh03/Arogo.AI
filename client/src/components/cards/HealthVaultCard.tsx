@@ -32,14 +32,14 @@ export default function HealthVaultCard({ timestamp, type, prescriptionId, hospi
   }, [showModal]);
 
   return (
-    <article className="w-full h-[143px] relative flex justify-between items-center px-10 py-4.5 border bg-[#f7f8f8] rounded-[42px] border-[rgba(217,217,217,0.60)]">
+    <article className="w-full h-[143px] relative flex justify-between items-center px-10 py-4.5 border bg-[#f7f8f8] rounded-[42px] border-[#D9D9D999]">
       <div className="w-[6%] flex flex-col items-center gap-2.5 text-accent">
         <p className="text-lg leading-[23px] tracking-[0.28px]">{dateObj.toLocaleString(undefined, { weekday: "short" })}</p>
         <p className="text-[32px] font-medium leading-[23px] tracking-[0.28px]">{dateObj.getDate()}</p>
         <p className="text-sm leading-[23px] tracking-[0.28px]">{dateObj.toLocaleString(undefined, { month: "short", year: "numeric" })}</p>
       </div>
 
-      <div className="h-full w-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+      <div className="h-full w-0.25 bg-[#D9D9D999]"></div>
 
       <div className="w-[10%] flex flex-col gap-3 items-center text-center">
         <div className="w-full border border-accent text-accent px-6 py-1.25 rounded-[45px]">{type}</div>
@@ -72,12 +72,12 @@ export default function HealthVaultCard({ timestamp, type, prescriptionId, hospi
           {showModal && (
             <div
               ref={modalRef}
-              className="w-[190px] h-[106px] flex flex-col items-center text-center justify-center overflow-hidden rounded-2xl absolute top-4 right-20 bg-[#f7f8f8] border border-[rgba(217,217,217,0.60)] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)]"
+              className="w-[190px] h-[106px] flex flex-col items-center text-center justify-center overflow-hidden rounded-2xl absolute top-4 right-20 bg-[#f7f8f8] border border-[#D9D9D999] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)]"
             >
               <p onClick={handleViewPrescription} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
                 View prescription
               </p>
-              <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+              <div className="w-full h-0.25 bg-[#D9D9D999]"></div>
               <p onClick={showDeleteModal} className="w-full text-lg leading-[54px] hover:bg-[#e9e9e980] cursor-pointer">
                 Delete
               </p>

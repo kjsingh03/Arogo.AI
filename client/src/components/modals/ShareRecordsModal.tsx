@@ -22,9 +22,9 @@ export default function AIInsightModal({ closeModal, }: { closeModal: () => void
           </div>
         </div>
         <div className="w-full flex flex-col items-center gap-6">
-          <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+          <div className="w-full h-0.25 bg-[#D9D9D999]"></div>
           <div className="w-full flex items-center justify-between">
-            <div className="w-[480px] h-[62px] flex items-center gap-11.25 px-5 rounded-[59px] border-[1.33px] bg-[#fafafa] border-[rgba(217,217,217,0.60)] ">
+            <div className="w-[480px] h-[62px] flex items-center gap-11.25 px-5 rounded-[59px] border-[1.33px] bg-[#fafafa] border-[#D9D9D999] ">
               <div className="w-7.25 h-7.25">
                 <svg className="text-black size-full object-cover" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_1378_11324)">
@@ -63,7 +63,7 @@ export default function AIInsightModal({ closeModal, }: { closeModal: () => void
                 <p className="text-accent text-lg tracking-[-0.36px] leading-[150%]">
                   {data.Speciality}
                 </p>
-                <div className="w-[33px] h-[33px] rounded-lg flex items-center justify-center bg-[#fafafa] border border-[rgba(217,217,217,0.60)]">
+                <div className="w-[33px] h-[33px] rounded-lg flex items-center justify-center bg-[#fafafa] border border-[#D9D9D999]">
                   <svg className="size-full text-accent object-cover" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="CheckCircle" clipPath="url(#clip0_900_7985)">
                       <path id="Vector" d="M11 17L14 20L21 13" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
@@ -75,7 +75,7 @@ export default function AIInsightModal({ closeModal, }: { closeModal: () => void
             ))}
           </div>
           <button className="w-[298px] btn btn-primary mt-2.5">Send</button>
-          <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+          <div className="w-full h-0.25 bg-[#D9D9D999]"></div>
           <div className="flex flex-col gap-10 py-4">
             <p className="text-[26px] font-semibold leading-[15.8px]">Share via External Apps</p>
             <div className="flex justify-center gap-18 items-center">

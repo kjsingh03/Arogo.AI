@@ -33,6 +33,7 @@ import AIInsightModal from "./modals/AIInsightModal";
 import ShareRecordsModal from "./modals/ShareRecordsModal";
 import ViewPrescriptionModal from "./modals/ViewPrescriptionModal";
 import VaultDocumentInputModal from "./modals/VaultDocumentInputModal";
+import ConfirmAppointmentModal from "./modals/ConfirmAppointmentModal";
 
 // Other Utils
 import IconList from "./utils/IconList";
@@ -41,6 +42,8 @@ import AuthHappySection from "./utils/AuthHappySection";
 // Input
 import Input from "./inputs/Input";
 import PinInput from "./inputs/PinInput";
+import PhoneInput from "./inputs/PhoneInput";
+import CalenderInput from "./inputs/CalenderInput";
 
 // Select
 import { CustomSelectButton } from "./select/CustomSelectButton";
@@ -51,8 +54,8 @@ export {
     AuthLayout, MainLayout, ServiceLayout,
     StepsHero, PhysicalDashboardMainHero, AppointmentsHero, WellBeingHero, ConsultAgainHero, SpecialityHero,
     DoctorCard, MedicationCard, UpcomingAppointmentCard, HealthVaultCard, NearbyDoctorCard,
-    UpcomingAppointmentModal, MedicationReminderModal, DeleteHealthVaultModal, AddHealthVaultModal, AIInsightModal, ShareRecordsModal, ViewPrescriptionModal, VaultDocumentInputModal,
+    UpcomingAppointmentModal, MedicationReminderModal, DeleteHealthVaultModal, AddHealthVaultModal, AIInsightModal, ShareRecordsModal, ViewPrescriptionModal, VaultDocumentInputModal, ConfirmAppointmentModal,
     IconList, AuthHappySection, AppointmentCalender,
-    Input, PinInput,
+    Input, PinInput, PhoneInput,CalenderInput,
     CustomSelectButton,
 }

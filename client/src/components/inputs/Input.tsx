@@ -2,10 +2,10 @@ import { InputHTMLAttributes } from "react";
 import { greenTick, pencil, redCross } from "../../assets";
 import { CustomInputProps } from "../../types";
 
-export default function Input({ name, label, type = "text", value, placeholder, onChange, error, success, classes, errLabel = true, markAsRequired = false, pencilEnabled = false, style,...rest }: CustomInputProps & InputHTMLAttributes<HTMLInputElement>) {
+export default function Input({ name, label, type = "text", value, placeholder, onChange, error, success, classes, errLabel = true, markAsRequired = false, pencilEnabled = false, style, ...rest }: CustomInputProps & InputHTMLAttributes<HTMLInputElement>) {
 
     return (
-        <div className={`${classes} flex flex-col w-full gap-3.5`}>
+        <div className={`${classes} flex flex-col w-full gap-2`}>
             {
                 label &&
                 <label htmlFor={name} className="flex justify-between w-full ">
@@ -23,10 +23,9 @@ export default function Input({ name, label, type = "text", value, placeholder, 
             }
             <div className="relative w-full">
                 <input {...rest} id={name} name={name} type={type} value={value} placeholder={placeholder} onChange={onChange}
-                    className={`w-full text-base leading-5 pl-7.5 pr-12 py-5.5 rounded-[83.5px] border-[1.25px]
-                         ${error ? "border-[#ff3131]" : "border-gray-300"}
-                          focus:outline-none focus:ring-2
-                           ${error ? "focus:ring-[#ff3131]" : "focus:ring-blue-500"}`} style={{...style}}  />
+                    className={`w-full text-base leading-5 pl-7.5 pr-12 py-5.5 rounded-[14px] border-[1.25px] bg-[#f3f4f6]
+                         ${error ? "border-[#ff3131]" : "border-gray-300"} focus:outline-none focus:ring-2 
+                         ${error ? "focus:ring-[#ff3131]" : "focus:ring-blue-500"}`} style={{ ...style }} />
 
                 {error && (
                     <img src={redCross} className="absolute right-3 top-5" />

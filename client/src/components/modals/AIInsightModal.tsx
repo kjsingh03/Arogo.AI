@@ -15,16 +15,16 @@ export default function AIInsightModal({ closeModal, handleShare }: { closeModal
                     </div>
                 </div>
                 <div className="w-full h-full flex flex-col gap-5.5 items-center">
-                    <div className="w-full flex flex-col px-6 pt-3.25 pb-9 rounded-[27px] border border-[rgba(217,217,217,0.60)] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)] ">
+                    <div className="w-full flex flex-col px-6 pt-3.25 pb-9 rounded-[27px] border border-[#D9D9D999] shadow-[0px_4px_29.7px_0px_rgba(0,0,0,0.05)] ">
                         <div className="flex items-center justify-between px-6 pb-4 pt-3.5">
                             <p className="text-xl font-semibold">Patient ID : <span className="font-normal">111928823</span></p>
                             <p className="text-xl font-semibold">Name : <span className="font-normal">Mayank</span></p>
                             <p className="text-xl font-semibold">Gender : <span className="font-normal">Male</span></p>
                             <p className="text-xl font-semibold">Age : <span className="font-normal">22</span></p>
                         </div>
-                        <div className="w-full h-0.25 bg-[rgba(217,217,217,0.60)]"></div>
+                        <div className="w-full h-0.25 bg-[#D9D9D999]"></div>
                         <p className="text-xl leading-[50.4px] font-semibold px-6">Test Name</p>
-                        <div className="w-full rounded-[18px] px-8 py-4.75 bg-white border border-[rgba(217,217,217,0.60)]">
+                        <div className="w-full rounded-[18px] px-8 py-4.75 bg-white border border-[#D9D9D999]">
                             <p className="text-lg leading-[20px] font-light">Malaria</p>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ export default function AIInsightModal({ closeModal, handleShare }: { closeModal
                             slide !== 0 &&
                             <>
                                 <p className="text-xl leading-[50.4px] font-semibold tracking-[-1px]">Insights</p>
-                                <div className="h-full max-h-[806px] px-14 py-5.5 bg-[#fdfdfd] border border-[rgba(217,217,217,0.60)] rounded-[18px] ">
+                                <div className="h-full max-h-[806px] px-14 py-5.5 bg-[#fdfdfd] border border-[#D9D9D999] rounded-[18px] ">
                                     <p className="text-lg font-light leading-[20px]">Take with a full glass of water.Take on an empty stomach (1 hour before or 2 hours after meals).Take with a full glass of water.Take on an empty stomach (1 hour before or 2 hours after meals).</p>
                                 </div>
                                 <div className="flex items-center justify-center">
