@@ -36,15 +36,26 @@ export interface HealthVaultFormData {
 }
 
 export interface bookAppointmentFormData {
-    firstName:string;
-    lastName:string;
-    phoneNumber:string;
-    gender:'male'|'female'|'prefer not to say';
-    visitHour:string;
-    dob:Date|null;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    gender: 'male' | 'female' | 'prefer not to say';
+    visitHour: string;
+    dob: Date | null;
     symptoms: string;
     isNew: "true" | "false";
     appointmentMode: 'online' | 'in-person';
     files: FileList | string[] | null;
-    appointmentDateTime: Date|null;
+    appointmentDateTime: Date | null;
+}
+
+export interface PaymentFormData{
+    address:string;
+    city:string;
+    state:string;
+    postal:string;
+    name:string;
+    number:string;
+    expiry:string;
+    cvc:string;
 }

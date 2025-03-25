@@ -2,12 +2,11 @@ import { ChangeEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { chevronDown, expert1, verifiedReview } from "../assets";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import FAQItem from "../components/faq/FAQItem";
-import { bookAppointmentFormData } from "../types/formData";
 import { AppointmentCalender, ConfirmAppointmentModal, CustomSelectButton, VaultDocumentInputModal, } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { nearbyDoctorsFetchService } from "../services";
-import { setNearbyDoctor } from "../store";
+import { setBookAppointmentDoctor, setBookAppointmentFormData, setNearbyDoctor } from "../store";
 
 const faqData = [
   {
@@ -85,8 +84,6 @@ const reviews = [
 export default function BookAppointment() {
 
   const [openIndex, setopenIndex] = useState<number | null>(null);
-  const [formData, setFormData] = useState<bookAppointmentFormData>({ symptoms: "", isNew: "true", appointmentMode: "in-person", files: null, appointmentDateTime: new Date(), dob: null, firstName: "", lastName: "", gender: "male", phoneNumber: "", visitHour: "" });
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [files, setFiles] = useState<File[] | null>(null);
   const [error, setError] = useState<string>("");
   const [showInputVaultModal, setShowInputVaultModal] = useState<boolean>(false);
@@ -95,37 +92,23 @@ export default function BookAppointment() {
   const [pageParams, setPageParams] = useSearchParams();
 
   const { doctors } = useSelector((state: RootState) => state.nearbyDoctors);
+  const { formData, doctor } = useSelector((state: RootState) => state.bookAppointment);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fetchDoctors = async () => {
-    try {
-      const res = await nearbyDoctorsFetchService()
-      dispatch(setNearbyDoctor(res))
-    } catch (err: any) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    fetchDoctors()
-  }, [])
-
-  const doctorID = pageParams.get("doctorId");
+  const doctorID = useMemo(() => {
+    return pageParams.get("doctorId");
+  }, [doctors])
 
   if (!doctorID) navigate("/doctor-list");
-
-  const doctor = useMemo(() => {
-    return doctors.find((data) => String(data.id) === doctorID);
-  }, [doctorID, doctors]);
-
-  const handleFaqOpen = (num: number) => {
-    setopenIndex(openIndex === num ? null : num);
-  };
 
   const sectionQuery = useMemo(() => {
     return pageParams.get("section");
   }, [pageParams]);
+
+  const handleFaqOpen = (num: number) => {
+    setopenIndex(openIndex === num ? null : num);
+  };
 
   const switchSection = (sec: string) => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -139,14 +122,10 @@ export default function BookAppointment() {
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
 
-    if (
-      type === "file" &&
-      e.target instanceof HTMLInputElement &&
-      e.target.files
-    ) {
-      setFormData({ ...formData, files: e.target.files });
+    if (type === "file" && e.target instanceof HTMLInputElement && e.target.files) {
+      dispatch(setBookAppointmentFormData({ ...formData, files: e.target.files }));
     } else {
-      setFormData({ ...formData, [name]: value });
+      dispatch(setBookAppointmentFormData({ ...formData, [name]: value }));
     }
   };
 
@@ -176,9 +155,9 @@ export default function BookAppointment() {
       }
     }
 
-    // If all files are valid
     if (isValid) {
       setError("");
+      // dispatch(setBookAppointmentFormData({ files: filesArray }))
       setFiles(filesArray);
     }
   };
@@ -190,14 +169,30 @@ export default function BookAppointment() {
 
   console.log(formData, files);
 
+  const fetchDoctors = async () => {
+    try {
+      const res = await nearbyDoctorsFetchService()
+      dispatch(setNearbyDoctor(res))
+    } catch (err: any) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchDoctors()
+  }, [])
+
+  useEffect(() => {
+    dispatch(setBookAppointmentDoctor(doctors.find((data) => String(data.id) === doctorID)));
+  }, [doctorID, doctors]);
+
   useEffect(() => {
     if (showInputVaultModal || showConfirmAppointmentModal) {
       document.body.style.overflow = "hidden";
     }
 
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = "" };
+
   }, [showInputVaultModal, showConfirmAppointmentModal]);
 
   return (
@@ -208,18 +203,14 @@ export default function BookAppointment() {
 
       {
         showConfirmAppointmentModal &&
-        <ConfirmAppointmentModal closeModal={() => setShowConfirmAppointmentModal(false)} doctor={doctor} formData={formData} setFormData={setFormData} />
+        <ConfirmAppointmentModal closeModal={() => setShowConfirmAppointmentModal(false)} />
       }
 
       <div className="w-full mx-auto flex flex-col items-center gap-12 py-10.5 px-35 max-2xl:px-8 ">
         <div className="w-full flex items-center justify-between py-9.5 px-10.75  ">
           <div className="w-full max-w-[815px flex items-center gap-10">
             <div className="w-44.75 h-44.75 rounded-full overflow-hidden">
-              <img
-                src={expert1}
-                className="size-full object-cover object-top"
-                alt=""
-              />
+              <img src={expert1} className="size-full object-cover object-top" alt="" />
             </div>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-7.75">
@@ -257,28 +248,9 @@ export default function BookAppointment() {
                     <div className="text-accent font-semibold hover:underline flex items-center gap-1">
                       <p>{"18 km away"}</p>
                       <div className="w-5 h-5 ">
-                        <svg
-                          className="size-full object-cover"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="21"
-                          height="20"
-                          viewBox="0 0 21 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M10.5018 10.6267C11.8819 10.6267 13.0007 9.50791 13.0007 8.12781C13.0007 6.7477 11.8819 5.62891 10.5018 5.62891C9.12173 5.62891 8.00293 6.7477 8.00293 8.12781C8.00293 9.50791 9.12173 10.6267 10.5018 10.6267Z"
-                            stroke="#23B2FF"
-                            strokeWidth="0.937088"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M16.7484 8.13007C16.7484 13.7526 10.5012 18.1257 10.5012 18.1257C10.5012 18.1257 4.25391 13.7526 4.25391 8.13007C4.25391 6.47319 4.9121 4.88418 6.08368 3.71259C7.25527 2.541 8.84429 1.88281 10.5012 1.88281C12.158 1.88281 13.747 2.541 14.9186 3.71259C16.0902 4.88418 16.7484 6.47319 16.7484 8.13007Z"
-                            stroke="#23B2FF"
-                            strokeWidth="0.937088"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
+                        <svg className="size-full object-cover" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                          <path d="M10.5018 10.6267C11.8819 10.6267 13.0007 9.50791 13.0007 8.12781C13.0007 6.7477 11.8819 5.62891 10.5018 5.62891C9.12173 5.62891 8.00293 6.7477 8.00293 8.12781C8.00293 9.50791 9.12173 10.6267 10.5018 10.6267Z" stroke="#23B2FF" strokeWidth="0.937088" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M16.7484 8.13007C16.7484 13.7526 10.5012 18.1257 10.5012 18.1257C10.5012 18.1257 4.25391 13.7526 4.25391 8.13007C4.25391 6.47319 4.9121 4.88418 6.08368 3.71259C7.25527 2.541 8.84429 1.88281 10.5012 1.88281C12.158 1.88281 13.747 2.541 14.9186 3.71259C16.0902 4.88418 16.7484 6.47319 16.7484 8.13007Z" stroke="#23B2FF" strokeWidth="0.937088" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                     </div>
@@ -610,8 +582,8 @@ export default function BookAppointment() {
                   ></textarea>
                 </div>
                 <div className="w-max h-[82px] flex items-center justify-center p-1 bg-white rounded-[49px] border border-[#d9d9d9]">
-                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, isNew: "true" }))} label="New patient" isSelected={formData.isNew === "true"} />
-                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, isNew: "false" }))} label="Repeating patient" isSelected={formData.isNew === "false"} />
+                  <CustomSelectButton handleClick={() => dispatch(setBookAppointmentFormData({ isNew: "true" }))} label="New patient" isSelected={formData.isNew === "true"} />
+                  <CustomSelectButton handleClick={() => dispatch(setBookAppointmentFormData({ isNew: "false" }))} label="Repeating patient" isSelected={formData.isNew === "false"} />
                 </div>
                 <div className="w-full flex flex-col items-end gap-4">
                   <div
@@ -641,18 +613,13 @@ export default function BookAppointment() {
                 </div>
 
                 <div className="w-max h-[82px] flex items-center justify-center p-1 bg-white rounded-[49px] border border-[#d9d9d9]">
-                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, appointmentMode: "online" }))} label="Online" isSelected={formData.appointmentMode === "online"} />
-                  <CustomSelectButton handleClick={() => setFormData(prev => ({ ...prev, appointmentMode: "in-person" }))} label="In-person" isSelected={formData.appointmentMode === "in-person"} />
+                  <CustomSelectButton handleClick={() => dispatch(setBookAppointmentFormData({appointmentMode: "online" }))} label="Online" isSelected={formData.appointmentMode === "online"} />
+                  <CustomSelectButton handleClick={() => dispatch(setBookAppointmentFormData({ appointmentMode: "in-person" }))} label="In-person" isSelected={formData.appointmentMode === "in-person"} />
                 </div>
               </div>
             </div>
-            <AppointmentCalender
-              currentDate={currentDate}
-              setCurrentDate={setCurrentDate}
-              selectedDate={formData.appointmentDateTime}
-              onDateSelect={(date) => setFormData(prev => ({ ...prev, appointmentDateTime: date }))}
-            />
-            <button onClick={() => setShowConfirmAppointmentModal(true)} className="btn btn-primary">Continue</button>
+            <AppointmentCalender />
+            <button onClick={() => setShowConfirmAppointmentModal(true)} className="btn btn-primary py-5.75 text-[22px]">Continue</button>
           </div>
         </div>
       </div>

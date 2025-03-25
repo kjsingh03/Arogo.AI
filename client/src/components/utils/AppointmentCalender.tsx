@@ -1,29 +1,33 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { chevronLeft, chevronRight } from "../../assets";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { setBookAppointmentFormData } from "../../store";
 
 interface AppointmentCalendarProps {
-    currentDate: Date;
-    setCurrentDate: (x: Date) => void;
-    selectedDate: Date | null;
-    onDateSelect: (date: Date) => void;
     weekdays?: string[];
     className?: string;
     disableMonthNavigation?: boolean;
 }
 
-export default function AppointmentCalendar({
-    currentDate,
-    setCurrentDate,
-    selectedDate,
-    onDateSelect,
-    weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    className = "",
-    disableMonthNavigation = false
-}: AppointmentCalendarProps) {
-    
+export default function AppointmentCalendar({ weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], className = "", disableMonthNavigation = false }: AppointmentCalendarProps) {
+
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+    const { formData } = useSelector((state: RootState) => state.bookAppointment);
+    const dispatch = useDispatch();
+
+    const onDateSelect = (date: Date) => {
+        dispatch(setBookAppointmentFormData({ appointmentDateTime: date.toISOString() }))
+    }
+
     const changeMonth = (offset: number) => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + offset, 1));
     };
+
+    const { appointmentDateTime } = useMemo(() => {
+        return formData
+    }, [formData.appointmentDateTime])
 
     const daysInMonth = useMemo(() => {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -43,10 +47,13 @@ export default function AppointmentCalendar({
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
             const weekday = weekdays[date.getDay()];
-            const isSelected = selectedDate && 
-                selectedDate.getDate() === day &&
-                selectedDate.getMonth() === currentDate.getMonth() &&
-                selectedDate.getFullYear() === currentDate.getFullYear();
+            const appointmentDateTimeObj = appointmentDateTime ? new Date(appointmentDateTime) : null;
+
+            const isSelected = appointmentDateTimeObj instanceof Date &&
+                appointmentDateTimeObj.getDate() === day &&
+                appointmentDateTimeObj.getMonth() === currentDate.getMonth() &&
+                appointmentDateTimeObj.getFullYear() === currentDate.getFullYear();
+
 
             days.push(
                 <div
@@ -62,7 +69,7 @@ export default function AppointmentCalendar({
         }
 
         return days;
-    }, [currentDate, selectedDate, daysInMonth, firstDayOfMonth]);
+    }, [currentDate, appointmentDateTime, daysInMonth, firstDayOfMonth]);
 
     return (
         <div className={`w-full max-w-[768px] flex flex-col gap-4 ${className}`}>

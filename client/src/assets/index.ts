@@ -106,6 +106,12 @@ import telegramShareIcon from './utils/telegramShareIcon.svg'
 import videoRecorder from './utils/videoRecorder.svg'
 import whatsappShareIcon from './utils/whatsappShareIcon.svg'
 import verifiedReview from './utils/verifiedReview.svg'
+import mastercardCC from './utils/mastercardCC.svg'
+import visaCC from './utils/visaCC.svg'
+import gpayCC from './utils/gpayCC.svg'
+import stripeCC from './utils/stripeCC.svg'
+import paypalCC from './utils/paypalCC.svg'
+
 
 export {
     addressIcon, bandaid, bell, bellz, bin, bird, blackPlus, bluedot, bluePlus, blueRightArrow, bookDoctor, dermat, doctor1, doctor2, doctor3, doctor4, doctor5, doctor6, doctor7, doctorBg, doctorFg, eyedoc, file, facebook, flask, gynaec, heart, icon1, icon2, icon3, icon4, icon5, icon6, iconBg, instagram, landingHeroBg, linkedin, locationPin, locationMap, lock, mentalDoctorGroup, pencil, plus, rightArrow, rightArrow2, search, stethoscope, target, twitter, upcomingDoctor, upi, user, vcDoctor, videoPlayer, youtube,
@@ -113,5 +119,6 @@ export {
     logo,
     mentalDashboardVector, expert1, expert2, expert3, expert4, expert5, expert6, mindspace1, mindspace2, mindspace3, mindspace4, mindspace5, mindspace6, nothingPhone,
     symptom1, symptom2, symptom3, symptom4,
-    aiIcon, arogoCard, brain, copySimple, chevronDown, chevronLeft, chevronRight, chevronUp, ellipsis, folder, linkShareIcon, mailShareIcon, medicine, messageShareIcon, shareIcon, sharePersonIcon, signature, syringe, telegramShareIcon, videoRecorder, whatsappShareIcon,verifiedReview,
+    aiIcon, arogoCard, brain, copySimple, chevronDown, chevronLeft, chevronRight, chevronUp, ellipsis, folder, linkShareIcon, mailShareIcon, medicine, messageShareIcon, shareIcon, sharePersonIcon, signature, syringe, telegramShareIcon, videoRecorder, whatsappShareIcon, verifiedReview, gpayCC, mastercardCC, paypalCC,
+    stripeCC, visaCC
 }

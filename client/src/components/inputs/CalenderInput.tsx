@@ -2,8 +2,6 @@ import { useState, useMemo } from "react";
 import { chevronDown, chevronLeft, chevronRight } from "../../assets";
 
 interface CalenderInputProps {
-    currentDate: Date;
-    setCurrentDate: (x: Date) => void;
     selectedDate: Date | null;
     onDateSelect: (date: Date) => void;
     weekdays?: string[];
@@ -11,9 +9,10 @@ interface CalenderInputProps {
     disableMonthNavigation?: boolean;
 }
 
-export default function CalenderInput({ currentDate, setCurrentDate, selectedDate, onDateSelect, className, disableMonthNavigation = false }: CalenderInputProps) {
+export default function CalenderInput({  selectedDate, onDateSelect, className, disableMonthNavigation = false }: CalenderInputProps) {
 
     const [showCalendar, setShowCalendar] = useState(false);
+    const [currentDate, setCurrentDate,] = useState(new Date());
 
     const handleDateSelect = (date: Date) => {
         onDateSelect(date);

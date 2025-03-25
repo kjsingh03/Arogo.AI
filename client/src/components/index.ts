@@ -48,14 +48,16 @@ import CalenderInput from "./inputs/CalenderInput";
 // Select
 import { CustomSelectButton } from "./select/CustomSelectButton";
 import AppointmentCalender from "./utils/AppointmentCalender";
+import ConfirmBookingModal from "./modals/ConfirmBookingModal";
 
 export {
     Navbar, Footer, HomeFAQ, Sidebar,
     AuthLayout, MainLayout, ServiceLayout,
     StepsHero, PhysicalDashboardMainHero, AppointmentsHero, WellBeingHero, ConsultAgainHero, SpecialityHero,
     DoctorCard, MedicationCard, UpcomingAppointmentCard, HealthVaultCard, NearbyDoctorCard,
-    UpcomingAppointmentModal, MedicationReminderModal, DeleteHealthVaultModal, AddHealthVaultModal, AIInsightModal, ShareRecordsModal, ViewPrescriptionModal, VaultDocumentInputModal, ConfirmAppointmentModal,
+    UpcomingAppointmentModal, MedicationReminderModal, DeleteHealthVaultModal, AddHealthVaultModal, AIInsightModal, ShareRecordsModal, ViewPrescriptionModal, VaultDocumentInputModal, ConfirmAppointmentModal,ConfirmBookingModal,
     IconList, AuthHappySection, AppointmentCalender,
     Input, PinInput, PhoneInput,CalenderInput,
     CustomSelectButton,
+    
 }

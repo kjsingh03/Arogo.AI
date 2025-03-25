@@ -1,4 +1,5 @@
 import { AppointmentType, DoctorType, MedicationType, MentalRecordType, UserType } from "./entities";
+import { bookAppointmentFormData } from "./formData";
 import { DoctorCardProps } from "./props";
 
 export interface UISliceInterface {
@@ -23,4 +24,9 @@ export interface dataSliceInterface {
 
 export interface NearbyDoctorSliceInterface {
     doctors: DoctorType[];
+}
+
+export interface BookAppointmentSliceInterface {
+    doctor: DoctorType;
+    formData:bookAppointmentFormData;
 }

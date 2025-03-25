@@ -1,26 +1,38 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
-import { DoctorType } from '../../types';
+import { ChangeEvent, useState } from 'react'
 import { expert1 } from '../../assets';
-import { bookAppointmentFormData } from '../../types/formData';
 import Input from '../inputs/Input';
 import PhoneInput from '../inputs/PhoneInput';
 import CalenderInput from '../inputs/CalenderInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { setBookAppointmentFormData } from '../../store';
+import { useNavigate } from 'react-router-dom';
+import { validateBookingAppointmentForm } from '../../validations';
 
 interface ConfirmAppointmentModalProps {
     closeModal: () => void;
-    doctor: DoctorType | undefined;
-    setFormData: Dispatch<SetStateAction<bookAppointmentFormData>>;
-    formData: bookAppointmentFormData;
 }
 
-const availTimes = ["11:00AM", "12:00AM", "1:00AM", "2:00AM", "3:00AM", "4:00AM", "5:00AM", "6:00AM", "7:00AM", "8:00AM", "9:00AM", "10:00AM", "11:00AM"]
+const availTimes = ["11:00AM", "12:00PM", "1:00PM", "2:00PM", "3:00PM", "4:00PM", "5:00PM", "6:00PM", "7:00PM", "8:00PM", "9:00PM", "10:00PM"]
 
-export default function ConfirmAppointmentModal({ closeModal, doctor, formData, setFormData }: ConfirmAppointmentModalProps) {
+export default function ConfirmAppointmentModal({ closeModal }: ConfirmAppointmentModalProps) {
 
-    const [currentDob, setCurrentDob] = useState(new Date);
+    const [errors, setErrors] = useState({})
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { formData, doctor } = useSelector((state: RootState) => state.bookAppointment);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => dispatch(setBookAppointmentFormData({ ...formData, [e.target.name]: e.target.value }))
+
+    const handlePayment = () => {
+        const errors = validateBookingAppointmentForm(formData);
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors)
+            return;
+        }
+        navigate("/payment")
+    }
 
     return (
         <div onClick={closeModal} className="w-screen h-screen bg-[rgba(107,107,107,0.50)] fixed top-0 left-0 z-[1000] flex justify-center items-center ">
@@ -78,7 +90,7 @@ export default function ConfirmAppointmentModal({ closeModal, doctor, formData, 
                             </div>
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-center gap-8">
-                                    <p className="text-[26px] font-semibold leading-[23px] tracking-[0.52px]">{formData.appointmentDateTime?.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}, {formData.appointmentDateTime?.toLocaleDateString("en-GB", { weekday: "long" })}</p>
+                                    <p className="text-[26px] font-semibold leading-[23px] tracking-[0.52px]">Date</p>
                                     <p className="leading-[23px] tracking-[0.32px]">Click to <span onClick={closeModal} className="text-accent active:underline">change date</span></p>
                                 </div>
                                 <div className="w-full flex flex-col gap-4">
@@ -87,7 +99,7 @@ export default function ConfirmAppointmentModal({ closeModal, doctor, formData, 
                                         <div className="w-full grid grid-cols-7 gap-4">
                                             {
                                                 availTimes?.map((data, idx) => (
-                                                    <div onClick={() => setFormData({ ...formData, visitHour: data })} key={'availTime' + idx} className={`px-5.5 py-4.5 rounded-[15px] ${formData.visitHour === data ? 'text-white bg-accent' : ""} text-lg font-medium leading-[18px] border border-[#D9D9D999]`}>{data}</div>
+                                                    <div onClick={() => dispatch(setBookAppointmentFormData({ visitHour: data }))} key={'availTime' + idx} className={`px-5.5 py-4.5 rounded-[15px] ${formData.visitHour === data ? 'text-white bg-accent' : ""} text-lg font-medium leading-[18px] border border-[#D9D9D999]`}>{data}</div>
                                                 ))
                                             }
                                         </div>
@@ -104,25 +116,15 @@ export default function ConfirmAppointmentModal({ closeModal, doctor, formData, 
                                     <Input name='lastName' label='Last Name' placeholder='Eg. Will' value={formData.lastName} onChange={handleChange} errLabel={false} />
                                 </div>
                                 <div className="w-[50%]">
-                                    <PhoneInput name="phoneNumber" value={formData.phoneNumber} updateFormData={(str) => setFormData({ ...formData, phoneNumber: str })} errLabel={false} />
+                                    <PhoneInput name="phoneNumber" value={formData.phoneNumber} updateFormData={(str) => dispatch(setBookAppointmentFormData({ phoneNumber: str }))} errLabel={false} />
                                 </div>
                                 <div className="w-full flex items-center justify-between">
-                                    {/* <div className="w-full flex flex-col justify-start text-start gap-3.5">
-                                        <p className="text-lg leading-5 max-sm:text-base">DOB</p>
-                                        <div className="flex gap-2">
-                                            <input type="text" name="dobDay" maxLength={2} onChange={handleChange} value={''} placeholder="DD" className="max-w-[82.5px] h-[46.5px] rounded-[31.3px] text-center border border-[#dfdfdf] text-[17.2px] leading-[21.6px] px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                            <input type="text" name="dobMonth" maxLength={2} onChange={handleChange} value={''} placeholder="MM" className="max-w-[82.5px] h-[46.5px] rounded-[31.3px] text-center border border-[#dfdfdf] text-[17.2px] leading-[21.6px] px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                            <input type="text" name="dobYear" maxLength={4} onChange={handleChange} value={''} placeholder="YYYY" className="max-w-[82.5px] h-[46.5px] rounded-[31.3px] text-center border border-[#dfdfdf] text-[17.2px] leading-[21.6px] px-3 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                        </div>
-                                    </div> */}
 
                                     <div className="w-[50%]">
                                         <CalenderInput
-                                            currentDate={currentDob}
-                                            setCurrentDate={setCurrentDob}
-                                            selectedDate={formData.dob}
-                                            onDateSelect={(date) => setFormData(prev => ({ ...prev, dob: date }))}
-                                            />
+                                            selectedDate={formData.dob ? new Date(formData.dob) : null}
+                                            onDateSelect={(date) => dispatch(setBookAppointmentFormData({ dob: date.toISOString() }))}
+                                        />
                                     </div>
 
                                     <div className="w-[50%] flex flex-col justify-start text-start gap-3.5">
@@ -136,11 +138,15 @@ export default function ConfirmAppointmentModal({ closeModal, doctor, formData, 
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    Object.keys(errors).length>0 &&
+                                    <p className={`w-full text-sm leading-[25.89px] text-start text-[#ff3131]  min-h-6.5 `}>{Object.values(errors)[0] as string}</p>
+                                }
                             </div>
                             <div className="w-full flex items-center justify-center">
                                 <div className="w-full max-w-[629px] flex flex-col items-center gap-6">
                                     <p className="text-accent font-medium leading-[23px] tracking-[0.4px]">Pay on consultation confirm appointment</p>
-                                    <button className='btn btn-primary py-5'>Proceed to payment</button>
+                                    <button onClick={handlePayment} className='btn btn-primary py-5'>Proceed to payment</button>
                                 </div>
                             </div>
                         </div>

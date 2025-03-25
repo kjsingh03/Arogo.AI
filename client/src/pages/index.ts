@@ -13,6 +13,7 @@ import MedicineAlertServicePage from "./MedicineAlert";
 import NotFound from "./NotFound";
 import DoctorList from "./DoctorList";
 import BookAppointment from "./BookAppointment";
+import BookingPayment from "./BookingPayment";
 
 export {
     Home,
@@ -30,4 +31,5 @@ export {
     NotFound,
     DoctorList,
     BookAppointment,
+    BookingPayment,
 }
