@@ -1,4 +1,4 @@
-import { AppointmentType, DoctorType, MedicationType, MentalRecordType, UserType } from "./entities";
+import { AppointmentType, Chat, DoctorType, MedicationType, MentalRecordType, UserType } from "./entities";
 import { bookAppointmentFormData } from "./formData";
 import { DoctorCardProps } from "./props";
 
@@ -28,5 +28,10 @@ export interface NearbyDoctorSliceInterface {
 
 export interface BookAppointmentSliceInterface {
     doctor: DoctorType;
-    formData:bookAppointmentFormData;
+    formData: bookAppointmentFormData;
+}
+
+export interface ChatSliceInterface {
+    chats: Chat[];
+    activeChat: Chat | null;
 }

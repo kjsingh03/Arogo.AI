@@ -49,13 +49,27 @@ export interface bookAppointmentFormData {
     appointmentDateTime: Date | null;
 }
 
-export interface PaymentFormData{
-    address:string;
-    city:string;
-    state:string;
-    postal:string;
-    name:string;
-    number:string;
-    expiry:string;
-    cvc:string;
+export interface PaymentFormData {
+    address: string;
+    city: string;
+    state: string;
+    postal: string;
+    name: string;
+    number: string;
+    expiry: string;
+    cvc: string;
+}
+
+export interface DoctorFilterData {
+    minLocation: number | null;
+    maxLocation: number | null;
+    speciality: string[];
+    languages: string[];
+    consultationType: null | 'in-person' | 'online' | 'both';
+    minPrice: number | null;
+    maxPrice: number | null;
+    rating: string;
+    gender: null | 'male' | 'female' | 'both';
+    minExperienceRange: number | null;
+    maxExperienceRange: number | null;
 }

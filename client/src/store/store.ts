@@ -4,6 +4,7 @@ import uIReducer from './slices/UiSlice';
 import dataReducer from './slices/DataSlices';
 import nearbyDoctorReducer from './slices/NearbyDoctorSlice';
 import bookAppointmentReducer from './slices/BookAppointmentSlice';
+import chatsReducer from './slices/ChatsSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         data: dataReducer,
         nearbyDoctors: nearbyDoctorReducer,
         bookAppointment: bookAppointmentReducer,
+        chats : chatsReducer,
     },
 });
 

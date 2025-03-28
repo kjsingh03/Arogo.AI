@@ -124,6 +124,27 @@ body {
 }
 
 
+/* Doctor Filter items */
+
+
+.filter-item{
+  /* w-full h-11.5 py-[11.5px] pl-5.75 text-xl font-medium leading-[23px] tracking-[0.4px] border-l-[3px] ${selectedFilter==="location"?'bg-[#23B2FF1A] border-accent':'border-transparent' */
+  width:100%;
+  height: 46px;
+  padding: 11.5px 15px 11.5px 23px;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.4px;
+  border-left: 3px solid transparent;
+}
+
+.filter-item.active{
+  font-weight: 500;
+  background-color: #23B2FF1A;
+  border-left: 3px solid var(--color-accent);
+}
+
+
 
 
 .physicalDashboardBg {

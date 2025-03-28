@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { googleAuth, logo } from "../assets";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { AuthHappySection, Input, PinInput } from "../components";
+import { Input, PinInput } from "../components";
 import { validateEmail, validateOtp, validateSecurityPin } from "../validations";
 import { LoginUserFormData } from "../types";
 import { authLoginUser, authVerifyOTP } from "../services";
@@ -90,7 +90,7 @@ export default function Login() {
 
     useEffect(() => {
         navigate("/login")
-    }, [])    
+    }, [])
 
     return (
         <div className="authbg w-full h-screen overflow-y-auto py-16 pl-30.75 pr-32.5 max-xl:px-10 flex items-center flex-col gap-20">
@@ -105,11 +105,11 @@ export default function Login() {
                 </Link>
                 <p className="text-[#FAFAFA] text-[22px] font-medium ">Your Health, Simplified - Care at Your Fingertips.</p>
             </div>
-            <div className="w-full h-[676px] flex max-xl:flex-col gap-8">
-                <AuthHappySection />
+            <div className="w-full h-[547px] flex justify-center max-xl:flex-col gap-8">
+                {/* <AuthHappySection /> */}
                 <div className="w-full xl:max-w-[628px] min-h-full px-16.5 pt-6 rounded-[28.2px] bg-[#fafafa] shadow-[0px_4px_36px_rgba(0,0,0,0.10)]">
-                    <div className="w-full h-full flex flex-col items-center justify-between">
-                        <div className="w-full h-full flex flex-col items-center gap-5.5 justify-between">
+                    <div className="w-full h-full flex flex-col items-center justify-around">
+                        <div className="w-full h-ful flex flex-col items-center gap-5.5 justify-between">
                             <div className="flex flex-col items-center text-center gap-3.5">
                                 <h1 className="text-[42px] font-medium leading-[25.659px] max-sm:text-3xl">Sign In</h1>
                                 <p className="text-[22px] leading-[25.659px] max-sm:text-base">Your mental health journey starts here.</p>
@@ -117,11 +117,12 @@ export default function Login() {
 
                             <div className="w-full flex flex-col items-center gap-3.5">
                                 <Input name="email" placeholder="Enter your email" label="Enter Registered email" onChange={handleChange} value={formData.email} error={errors.email} success={success.email} />
-
                                 {
-                                    step !== "2" ?
-                                        <PinInput value={formData.securityPin} label="Security Pin" onChange={(newSecurityPin: string) => { setFormData({ ...formData, securityPin: newSecurityPin }); setErrors({}) }} error={errors.securityPin} /> :
+                                    step === "2" &&
+                                    <>
+                                        <PinInput value={formData.securityPin} label="Security Pin" onChange={(newSecurityPin: string) => { setFormData({ ...formData, securityPin: newSecurityPin }); setErrors({}) }} error={errors.securityPin} />
                                         <PinInput value={formData.otp} label="OTP" onChange={(newotp: string) => { setFormData({ ...formData, otp: newotp }); setErrors({}) }} error={errors.otp} />
+                                    </>
                                 }
                             </div>
 

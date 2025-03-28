@@ -190,8 +190,7 @@ export default function Signup() {
                 </Link>
                 <p className="text-[#FAFAFA] text-[22px] font-medium ">Your Health, Simplified - Care at Your Fingertips.</p>
             </div>
-            <div className="w-full h-[676px] flex max-xl:flex-col gap-8">
-                <AuthHappySection />
+            <div className="w-full h-[676px] flex justify-center max-xl:flex-col gap-8">
                 <div className="w-full xl:max-w-[628px] min-h-full px-13.5 pt-15.5 rounded-[28.2px] bg-[#fafafa] shadow-[0px_4px_36px_rgba(0,0,0,0.10)]">
                     {step === "1" && (
                         <div className="w-full h-full flex flex-col items-center justify-between">

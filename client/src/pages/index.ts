@@ -14,6 +14,7 @@ import NotFound from "./NotFound";
 import DoctorList from "./DoctorList";
 import BookAppointment from "./BookAppointment";
 import BookingPayment from "./BookingPayment";
+import Messaging from "./Messaging";
 
 export {
     Home,
@@ -32,4 +33,5 @@ export {
     DoctorList,
     BookAppointment,
     BookingPayment,
+    Messaging,
 }

@@ -1,4 +1,4 @@
-import { bookAppointmentFormData, PaymentFormData } from "../types/formData";
+import { bookAppointmentFormData, PaymentFormData } from "../types";
 
 export const validateBookingAppointmentForm = (formData: bookAppointmentFormData) => {
     const { firstName, lastName, phoneNumber, gender, visitHour, dob, symptoms, isNew, appointmentMode, appointmentDateTime, files } = formData;

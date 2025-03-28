@@ -1,12 +1,12 @@
-import { UserType, DoctorType, AppointmentType, MedicationType,MentalRecordType } from './entities'
-import { RegisterUserFormData,LoginUserFormData,HealthVaultFormData,PaymentFormData } from './formData'
+import { UserType, DoctorType, AppointmentType, MedicationType,MentalRecordType,CallDetails,Chat,Media,Message } from './entities'
+import { RegisterUserFormData,LoginUserFormData,HealthVaultFormData,PaymentFormData,DoctorFilterData,bookAppointmentFormData } from './formData'
 import { DoctorCardProps, CustomInputProps, FAQItemProps, FeatureItemProps, PinInputProps, SpecialityItemProps, StatisticItemProps, StepItemProps, } from './props'
-import { UISliceInterface,UserSliceInterface,dataSliceInterface,NearbyDoctorSliceInterface,BookAppointmentSliceInterface } from './slices'
+import { UISliceInterface,UserSliceInterface,dataSliceInterface,NearbyDoctorSliceInterface,BookAppointmentSliceInterface,ChatSliceInterface } from './slices'
 
 
 export type {
-    UserType, DoctorType, AppointmentType, MedicationType,MentalRecordType,
-    RegisterUserFormData,LoginUserFormData,HealthVaultFormData,PaymentFormData,
+    UserType, DoctorType, AppointmentType, MedicationType,MentalRecordType,CallDetails,Chat,Media,Message,
+    RegisterUserFormData,LoginUserFormData,HealthVaultFormData,PaymentFormData,DoctorFilterData,bookAppointmentFormData,
     DoctorCardProps, CustomInputProps, FAQItemProps, FeatureItemProps, PinInputProps, SpecialityItemProps, StatisticItemProps, StepItemProps,
-    UISliceInterface,UserSliceInterface,dataSliceInterface,NearbyDoctorSliceInterface,BookAppointmentSliceInterface
+    UISliceInterface,UserSliceInterface,dataSliceInterface,NearbyDoctorSliceInterface,BookAppointmentSliceInterface,ChatSliceInterface
 }

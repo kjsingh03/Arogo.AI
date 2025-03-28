@@ -85,3 +85,30 @@ export interface DoctorType {
     isVerified: boolean;
     score: number;
 }
+
+export interface Media {
+    url: string;
+    duration?: number;   
+    thumbnail?: string;  
+}
+
+export interface CallDetails {
+    time: string;         
+    status: 'missed' | 'completed';
+}
+
+export interface Message {
+    id: string;         
+    date: string;        
+    sender: 'user' | 'doctor';
+    type: 'text' | 'audio' | 'video' | 'pdf' | 'image' | 'consultationStart' | 'consultationEnd' | 'missedCall';
+    content?: string;    
+    media?: Media;       
+    callDetails?: CallDetails;
+}
+
+export interface Chat {
+    id: string;
+    doctor: DoctorType;
+    messages: Message[];
+}
