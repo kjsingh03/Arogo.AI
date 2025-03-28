@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { googleAuth, logo } from "../assets";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { AuthHappySection, Input, PinInput } from "../components";
+import { Input, PinInput } from "../components";
 import { validateConfirmSecurityPin, validateEmail, validateOtp, validatePhoneNumber, validateProfileCompletion } from "../validations";
 import { RegisterUserFormData } from "../types";
 import { authRegisterUser, authRequestOTP, authVerifyOTP } from "../services";

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import  {  Dispatch, SetStateAction, useState } from 'react'
 import { DoctorFilterData } from '../../types';
 import Slider from '../slider/Slider';
 import Radio from '../radio/Radio';

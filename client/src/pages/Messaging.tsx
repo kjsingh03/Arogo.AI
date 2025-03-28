@@ -1,5 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from 'react'
-import { upcomingDoctor } from '../assets'
+import { ChangeEvent, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import { Chat } from '../types'
@@ -7,7 +6,7 @@ import { useSearchParams } from 'react-router-dom'
 
 export default function Messaging() {
 
-    const [chatSearchQuery, setChatSearchQuery] = useState("")
+    const [_, setChatSearchQuery] = useState("")
     const [queries, setQueries] = useSearchParams();
 
     const { chats } = useSelector((state: RootState) => state.chats);
@@ -131,7 +130,7 @@ interface ChatItemProps {
 
 export function ChatItem({ chat, handleClick }: ChatItemProps) {
 
-    const [queries, setQueries] = useSearchParams();
+    const [queries, _] = useSearchParams();
 
     const activeChatId = useMemo(() => {
         return queries.get('activeChatId');
